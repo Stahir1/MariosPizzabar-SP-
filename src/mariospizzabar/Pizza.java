@@ -1,7 +1,7 @@
 
 package mariospizzabar;
 
-@author jimmy
+// @author jimmy
 public class Pizza {
     private String ID;
     private String size;
