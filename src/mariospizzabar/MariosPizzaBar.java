@@ -10,6 +10,8 @@ public class MariosPizzaBar {
         
         System.out.println(marioMenukort.toString());
         
+        System.out.println(Menukort.getPizzaByID(4));
+        
     }
     
 }

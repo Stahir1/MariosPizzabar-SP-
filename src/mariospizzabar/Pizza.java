@@ -3,22 +3,32 @@ package mariospizzabar;
 
 // @author jimmy
 public class Pizza {
-    private String ID;
+    private int ID;
+    private String navn;
     private String topping;
     private int price;
 
-    public Pizza(String ID, String topping, int price) {
+    public Pizza(int ID, String navn, String topping, int price) {
         this.ID = ID;
+        this.navn = navn;
         this.topping = topping;
         this.price = price;
     }
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public String getNavn() {
+        return navn;
+    }
+
+    public void setNavn(String navn) {
+        this.navn = navn;
     }
 
     public String getTopping() {
@@ -37,8 +47,9 @@ public class Pizza {
         this.price = price;
     }
 
+
     @Override
     public String toString() {
-        return ID + ": " + topping + " - " + price + " kr.";
+        return ID + ". " + navn + ": " + topping + " - " + price + " kr.";
     }
 }
