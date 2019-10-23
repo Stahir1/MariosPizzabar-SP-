@@ -1,0 +1,53 @@
+package mariospizzabar;
+
+// @author Emil
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MariosPizzaBarMain {
+    public static void main(String[] args) {
+        Menukort marioMenukort = new Menukort();
+        
+        System.out.println("Velkommen til Marios Pizzabar.\nIndtast 1 for at se menu-kort.");
+        System.out.println("Indtast 2 for bestilling.");
+        // ToDo: Lav resten af indtastningerne (og find ud af hvilke)
+        int number = IntScanner();
+        String tidspunkt = "";
+        
+        if (number == 1) {
+            System.out.println(marioMenukort.toString());
+            // ToDo: Lav metode/klasse som kan starte programmet forfra, fra velkomstskærmen. 
+            // Eg., så når man har set menu-kortet kan man bagefter indtaste pizzanr.
+        } else if(number == 2) {
+            System.out.println("Lav en bestilling. \nIndtast Pizzanummer: ");
+            number = IntScanner();
+            System.out.println("Indtast bestillingstidspunkt: ");
+            tidspunkt = StringScanner();
+            Bestillinger bestilling = new Bestillinger(number, tidspunkt);
+            System.out.println(bestilling);
+        }
+
+
+
+
+// ToDo: Brug getPizzaById ud fra bestillinger-klassen til statistik delen.
+// System.out.println(Menukort.getPizzaByID(4));
+        
+    }
+    
+    public static int IntScanner() {
+        Scanner myScan = new Scanner(System.in);
+	int number = myScan.nextInt();
+        
+        return number;
+    }
+    
+    public static String StringScanner() {
+        Scanner myScan = new Scanner(System.in);
+	String bogstaver = myScan.nextLine();
+        
+        return bogstaver;
+    }
+    
+}

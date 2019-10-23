@@ -1,7 +1,3 @@
-
-
-
-
 package mariospizzabar;
 
 
@@ -10,12 +6,10 @@ package mariospizzabar;
 public class Bestillinger {
           private int ordreID;
           private String bestillingsTidspunkt;
-          private Pizza pizza;
 
-    public Bestillinger(int ordreID, String bestillingsTidspunkt, Pizza pizza) {
+    public Bestillinger(int ordreID, String bestillingsTidspunkt) {
         this.ordreID = ordreID;
         this.bestillingsTidspunkt = bestillingsTidspunkt;
-        this.pizza = pizza;
     }
 
     public int getOrdreID() {
@@ -34,19 +28,13 @@ public class Bestillinger {
         this.bestillingsTidspunkt = bestillingsTidspunkt;
     }
 
-    public Pizza getPizza() {
-        return pizza;
+    @Override
+    public String toString() {
+        return "Bestilling gennemført. \nPizzanummer: " + ordreID + ", Bestilt klokken: " + bestillingsTidspunkt;
     }
-
-    public void setPizza(Pizza pizza) {
-        this.pizza = pizza;
-    }
-          
-          
-          
-          
     
-    }
+    
+}
    
     
 
