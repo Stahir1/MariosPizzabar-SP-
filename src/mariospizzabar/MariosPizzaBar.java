@@ -1,14 +1,15 @@
 
 package mariospizzabar;
 
+import java.util.ArrayList;
 
 public class MariosPizzaBar {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Menukort marioMenukort = new Menukort();
+        
+        System.out.println(marioMenukort.toString());
+        
     }
     
 }
