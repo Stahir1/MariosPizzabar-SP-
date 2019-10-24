@@ -10,6 +10,7 @@ public class MariosPizzaBarMain {
     public static void main(String[] args) throws IOException {
         Menukort marioMenukort = new Menukort();
         boolean run = true;
+        int count = 1;
         
         System.out.println("Velkommen til Marios Pizzabar.");
         while(run) {
@@ -37,7 +38,7 @@ public class MariosPizzaBarMain {
                 System.out.println(bestilling);
                 marioListe.ListeMaker(bestilling);
                 System.out.println(marioListe.toString());
-                Liste.WriteFile(marioListe, "Data/Mariosliste.csv");
+                Liste.WriteFile(marioListe, "Data/Mariosliste.csv", count++);
             } else if(number == 3) {
                 run = false;
             }

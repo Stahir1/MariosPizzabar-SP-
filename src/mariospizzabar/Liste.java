@@ -17,6 +17,7 @@ import java.io.IOException;
 public class Liste {
     static String filename = "Data/Mariosliste.csv";
     private ArrayList<Bestilling> bestillingsListe;
+    private int count;
     
     public Liste(Bestilling bestilling) {
         this.bestillingsListe = ListeMaker(bestilling);
@@ -40,10 +41,9 @@ public class Liste {
         return marioListe;
     }
 
-    public static void WriteFile(Liste liste, String filename) throws IOException{
+    public static void WriteFile(Liste liste, String filename, int count) throws IOException{
         File file = new File(filename );
         FileWriter fw = new FileWriter(file, true);
-        int count = 1;
 	fw.write(count + ";" + liste.toString());
         count++;
         fw.close();
