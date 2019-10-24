@@ -11,6 +11,8 @@ public class MariosPizzaBarMain {
         
         System.out.println("Velkommen til Marios Pizzabar.\nIndtast 1 for at se menu-kort.");
         System.out.println("Indtast 2 for bestilling.");
+        // ToDo: Indtast 3 for se liste over bestillinger
+        // ToDo: Indtast 4 for statistik
         // ToDo: Lav resten af indtastningerne (og find ud af hvilke)
         int number = IntScanner();
         String tidspunkt = "";
