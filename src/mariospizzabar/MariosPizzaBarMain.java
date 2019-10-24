@@ -26,8 +26,12 @@ public class MariosPizzaBarMain {
             number = IntScanner();
             System.out.println("Indtast bestillingstidspunkt: ");
             tidspunkt = StringScanner();
-            Bestillinger bestilling = new Bestillinger(number, tidspunkt);
+            System.out.println("Bestilling gennemført:");
+            Bestilling bestilling = new Bestilling(number, tidspunkt);
+            Liste marioListe = new Liste(bestilling);
             System.out.println(bestilling);
+            marioListe.ListeMaker(bestilling);
+            System.out.println(marioListe.toString());
         }
 
 
