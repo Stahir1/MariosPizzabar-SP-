@@ -2,11 +2,12 @@ package mariospizzabar;
 
 // @author Emil
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MariosPizzaBarMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Menukort marioMenukort = new Menukort();
         
         System.out.println("Velkommen til Marios Pizzabar.\nIndtast 1 for at se menu-kort.");
@@ -32,6 +33,7 @@ public class MariosPizzaBarMain {
             System.out.println(bestilling);
             marioListe.ListeMaker(bestilling);
             System.out.println(marioListe.toString());
+            Liste.WriteFile(marioListe, "Data/Mariosliste.csv");
         }
 
 

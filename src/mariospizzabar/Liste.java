@@ -1,6 +1,14 @@
 package mariospizzabar;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import mariospizzabar.Liste;
 import static mariospizzabar.Menukort.MenukortMaker;
 
 /**
@@ -8,6 +16,7 @@ import static mariospizzabar.Menukort.MenukortMaker;
  * @author Daniel
  */
 public class Liste {
+    static String filename = "Data/Mariosliste.csv";
     private ArrayList<Bestilling> bestillingsListe;
     
     public Liste(Bestilling bestilling) {
@@ -32,6 +41,20 @@ public class Liste {
         return marioListe;
     }
 
+    
+    
+    public static void WriteFile(Liste liste, String filename) throws IOException{
+        
+      File file = new File(filename );
+        FileWriter fw = new FileWriter(file, true);
+	fw.write(liste.toString());
+	
+        fw.close();
+    }
+
+    
+
+    
     @Override
     public String toString() {
         return bestillingsListe + "\n";
