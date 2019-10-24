@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import mariospizzabar.Liste;
-import static mariospizzabar.Menukort.MenukortMaker;
+
 
 /**
  *
@@ -41,20 +40,15 @@ public class Liste {
         return marioListe;
     }
 
-    
-    
     public static void WriteFile(Liste liste, String filename) throws IOException{
-        
-      File file = new File(filename );
+        File file = new File(filename );
         FileWriter fw = new FileWriter(file, true);
-	fw.write(liste.toString());
-	
+        int count = 1;
+	fw.write(count + ";" + liste.toString());
+        count++;
         fw.close();
     }
 
-    
-
-    
     @Override
     public String toString() {
         return bestillingsListe + "\n";
