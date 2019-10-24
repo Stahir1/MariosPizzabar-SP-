@@ -16,7 +16,7 @@ public class MariosPizzaBarMain {
         while(run) {
             System.out.println("Tast 1 for at se menukortet.");
             System.out.println("Tast 2 for at oprette en bestilling.");
-            System.out.println("Tast 3 for at lukke programmet.");
+            System.out.println("Tast 5 for at lukke programmet.");
             // ToDo: Indtast 3 for se liste over bestillinger
             // ToDo: Indtast 4 for statistik
             // ToDo: Lav resten af indtastningerne (og find ud af hvilke)
@@ -25,8 +25,6 @@ public class MariosPizzaBarMain {
         
             if (number == 1) {
                 System.out.println(marioMenukort.toString());
-                // ToDo: Lav metode/klasse som kan starte programmet forfra, fra velkomstskærmen. 
-                // Eg., så når man har set menu-kortet kan man bagefter indtaste pizzanr.
             } else if(number == 2) {
                 System.out.println("Lav en bestilling. \nIndtast Pizzanummer: ");
                 number = IntScanner();
@@ -39,11 +37,11 @@ public class MariosPizzaBarMain {
                 marioListe.ListeMaker(bestilling);
                 System.out.println(marioListe.toString());
                 Liste.WriteFile(marioListe, "Data/Mariosliste.csv", count++);
-            } else if(number == 3) {
+            } else if(number == 5) {
                 run = false;
             }
             
-            System.out.println("Vil du afslutte programmet? (1 = JA, 2 = NEJ)");
+            System.out.println("Vil du lukke programmet? (1 = JA, 2 = NEJ)");
             number = IntScanner();
             if(number == 1) {
                 run = false;
