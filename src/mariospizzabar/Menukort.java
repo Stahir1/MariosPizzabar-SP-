@@ -16,6 +16,7 @@ public class Menukort {
         this.menukortMaker = new MenukortMaker();
         this.menukortMaker.fillCardWithPizza();
         this.pizza = null;
+        this.menukort = MenukortShow();
     }
     
     
@@ -27,8 +28,7 @@ public class Menukort {
         menukort.remove(pizza);
     }
     
-    /*
-    public static ArrayList MenukortMaker() {
+    public ArrayList MenukortShow() {
         
         ArrayList<Pizza> marioMenu = new ArrayList();
         
@@ -53,7 +53,7 @@ public class Menukort {
         
         return marioMenu;
     }
-*/
+
     
         public Pizza getPizzaByID(int pizzaID){
             //pizza = this.MenukortMaker().get
@@ -64,12 +64,10 @@ public class Menukort {
         } 
        
         
-        
-
     @Override
     public String toString() {
         String result = "Menuen indeholder:\n";
-        for (Pizza pizza : marioMenu) {
+        for (Pizza pizza : menukort) {
             result += pizza.toString() + "\n";
         }
         return result;
