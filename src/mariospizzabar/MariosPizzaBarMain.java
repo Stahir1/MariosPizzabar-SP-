@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class MariosPizzaBarMain {
     public static void main(String[] args) throws IOException {
         Menukort marioMenukort = new Menukort();
-        boolean run = true;
+        boolean runProg = true;
         int count = 1;
         
         System.out.println("Velkommen til Marios Pizzabar.");
-        while(run) {
+        while(runProg) {
             System.out.println("Tast 1 for at se menukortet.");
             System.out.println("Tast 2 for at oprette en bestilling.");
             System.out.println("Tast 5 for at lukke programmet.");
@@ -24,29 +24,29 @@ public class MariosPizzaBarMain {
             String tidspunkt = "";
         
             if (number == 1) {
-                System.out.println(marioMenukort.toString());
+                System.out.println("\n" + marioMenukort.toString());
             } else if(number == 2) {
-                System.out.println("Lav en bestilling. \nIndtast Pizzanummer: ");
+                System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
                 number = IntScanner();
                 System.out.println("Indtast bestillingstidspunkt: ");
                 tidspunkt = StringScanner();
-                System.out.println("Bestilling gennemført:");
+                System.out.println("\nBestilling gennemført:");
                 Bestilling bestilling = new Bestilling(number, tidspunkt);
                 Liste marioListe = new Liste(bestilling);
-                System.out.println(bestilling);
+                System.out.println(bestilling + "\n");
                 marioListe.ListeMaker(bestilling);
-                System.out.println(marioListe.toString());
+                //System.out.println(marioListe.toString());
                 Liste.WriteFile(marioListe, "Data/Mariosliste.csv", count++);
             } else if(number == 5) {
-                run = false;
+                runProg = false;
             }
             
             System.out.println("Vil du lukke programmet? (1 = JA, 2 = NEJ)");
             number = IntScanner();
             if(number == 1) {
-                run = false;
+                runProg = false;
             } else if(number == 2) {
-                run = true;
+                runProg = true;
             }
             
         }
