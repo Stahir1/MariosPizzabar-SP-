@@ -41,8 +41,6 @@ public class Liste {
         return marioListe;
     }
     
-    // Skal også overføre til statistik csv-filen, men man skal kune kunne 
-    // fjerne fra Mariosliste.csv.
     public static void WriteFile(Liste liste, String filename, String filename2, int count) throws IOException{
         File file = new File(filename);
         File file2 = new File(filename2);

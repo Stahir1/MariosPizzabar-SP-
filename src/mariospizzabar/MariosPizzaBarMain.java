@@ -31,7 +31,8 @@ public class MariosPizzaBarMain {
                 System.out.println("Indtast bestillingstidspunkt: ");
                 tidspunkt = StringScanner();
                 System.out.println("\nBestilling gennemført:");
-                Bestilling bestilling = new Bestilling(number, Menukort.getPizzaByID(number), tidspunkt);
+                Pizza tempPizza = marioMenukort.getPizzaByID(number);
+                Bestilling bestilling = new Bestilling(number, tempPizza, tidspunkt);
                 Liste marioListe = new Liste(bestilling);
                 System.out.println(bestilling + "\n");
                 marioListe.ListeMaker(bestilling);

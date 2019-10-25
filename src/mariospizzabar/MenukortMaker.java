@@ -5,33 +5,17 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Daniel
+ * @author Danie
  */
-public class Menukort {
-    private ArrayList<Pizza> menukort;
-    private MenukortMaker menukortMaker;
-    private Pizza pizza;
+public class MenukortMaker {
+    private ArrayList<Pizza> marioMenu;
 
-    public Menukort() {
-        this.menukortMaker = new MenukortMaker();
-        this.menukortMaker.fillCardWithPizza();
-        this.pizza = null;
-    }
-    
-    
-    public void addPizza(Pizza pizza) {
-        menukort.add(pizza);
-    }
-    
-    public void removePizza(Pizza pizza) {
-        menukort.remove(pizza);
-    }
-    
-    /*
-    public static ArrayList MenukortMaker() {
+    public MenukortMaker() {
+        this.marioMenu = new ArrayList<Pizza>();
         
-        ArrayList<Pizza> marioMenu = new ArrayList();
-        
+    }
+    
+    public void fillCardWithPizza() {
         marioMenu.add(new Pizza(1, "Vesuvio", "tomatsauce, ost, skinke og oregano", 57));
         marioMenu.add(new Pizza(2, "Amerikaner", "tomatsauce, ost, oksefars og oregano", 53));
         marioMenu.add(new Pizza(3, "Cacciatore", "tomatsauce, ost, pepperoni og oregano", 57));
@@ -49,33 +33,18 @@ public class Menukort {
         marioMenu.add(new Pizza(15, "Daniela", "tomatsauce, ost, kylling, bacon, løg, creme fraiche og oregano", 65));
         marioMenu.add(new Pizza(16, "Mexicano", "tomatsauce, ost, kødsauce, chili, løg, majs og oregano", 65));
         marioMenu.add(new Pizza(17, "Harry Potter", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 70));
-        //TODO: lav op til 31 pizzaer.
-        
-        return marioMenu;
     }
-*/
     
-        public Pizza getPizzaByID(int pizzaID){
-            //pizza = this.MenukortMaker().get
-            pizzaID -= 1;
-            pizza = menukortMaker.getPizzaByID(pizzaID);
-            return pizza;
-            
-        } 
-       
-        
-        
-
-    @Override
-    public String toString() {
-        String result = "Menuen indeholder:\n";
-        for (Pizza pizza : marioMenu) {
-            result += pizza.toString() + "\n";
+    public Pizza getPizzaByID(int pizzaID) {
+        Pizza returnPizza = null;
+        for(Pizza pizza : marioMenu) {
+            if(pizza.getID() == pizzaID) {
+                return pizza;
+            }
         }
-        return result;
+        return returnPizza;
     }
     
     
-    
-    
+
 }
