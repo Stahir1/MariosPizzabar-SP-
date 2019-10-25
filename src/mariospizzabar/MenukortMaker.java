@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Danie
+ * @author Daniel
  */
 public class MenukortMaker {
     private ArrayList<Pizza> marioMenu;

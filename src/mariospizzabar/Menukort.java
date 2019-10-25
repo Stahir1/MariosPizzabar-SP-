@@ -56,11 +56,8 @@ public class Menukort {
 
     
         public Pizza getPizzaByID(int pizzaID){
-            //pizza = this.MenukortMaker().get
-            pizzaID -= 1;
             pizza = menukortMaker.getPizzaByID(pizzaID);
             return pizza;
-            
         } 
        
         
