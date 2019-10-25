@@ -42,7 +42,7 @@ public class Bestilling {
 
     @Override
     public String toString() {
-        return "Pizzanavn: ;" + pizza.getNavn() + "; Pris: ;" + pizza.getPrice() + "; kr., Bestilt klokken: " + bestillingsTidspunkt;
+        return "Pizzanavn: ;" + pizza.getNavn() + "; Pris: ;" + pizza.getPrice() + "; kr., Afhentingstidspunkt: " + bestillingsTidspunkt;
     }
     
     

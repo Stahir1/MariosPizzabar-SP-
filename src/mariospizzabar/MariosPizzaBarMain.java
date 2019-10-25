@@ -30,7 +30,7 @@ public class MariosPizzaBarMain {
             } else if(number == 2) {
                 System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
                 number = IntScanner();
-                System.out.println("Indtast bestillingstidspunkt: ");
+                System.out.println("Indtast afhentingstidspunkt: ");
                 tidspunkt = StringScanner();
                 System.out.println("\nBestilling gennemført:");
                 Pizza tempPizza = marioMenukort.getPizzaByID(number);

@@ -1,5 +1,6 @@
-1;[Pizzanavn: ;Cacciatore; Pris: ;57; kr., Bestilt klokken: 15:15]
-1;[Pizzanavn: ;Vesuvio; Pris: ;57; kr., Bestilt klokken: 15:15]
-1;[Pizzanavn: ;Vesuvio; Pris: ;57; kr., Bestilt klokken: 15:15]
-1;[Pizzanavn: ;Daniela; Pris: ;65; kr., Bestilt klokken: 15:15]
-1;[Pizzanavn: ;Daniela; Pris: ;65; kr., Bestilt klokken: 15:15]
+
+1;[Pizzanavn: ;Cacciatore; Pris: ;57; kr., Bestilt klokken: 1]
+2;[Pizzanavn: ;Cacciatore; Pris: ;57; kr., Bestilt klokken: 1]
+3;[Pizzanavn: ;Carbona; Pris: ;63; kr., Bestilt klokken: 2]
+1;[Pizzanavn: ;Amerikaner; Pris: ;53; kr., Afhentingstidspunkt: 2]
+-1;[Pizzanavn: ;Amerikaner; Pris: ;53; kr., Afhentingstidspunkt: 2]

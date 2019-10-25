@@ -19,6 +19,7 @@ import java.util.Scanner;
 public class Liste {
 
     static String filename = "Data/Mariosliste.csv";
+    private String removeTerm = "";
     private ArrayList<Bestilling> bestillingsListe;
     private int count;
 
@@ -50,7 +51,7 @@ public class Liste {
         FileWriter fw = new FileWriter(file, true);
         FileWriter fw2 = new FileWriter(file2, true);
         fw.write(count + ";" + liste.toString());
-        fw2.write(count + ";" + liste.toString());
+        fw2.write("-" + count + ";" + liste.toString());
         count++;
         fw.close();
         fw2.close();
@@ -69,6 +70,12 @@ public class Liste {
         }
         
         in.close();
+    }
+    public static void EditFile (String filename){
+        File file = new File(filename);
+        
+        
+        
     }
 
     @Override
