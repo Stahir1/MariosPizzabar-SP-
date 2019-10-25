@@ -43,12 +43,16 @@ public class Liste {
     
     // Skal også overføre til statistik csv-filen, men man skal kune kunne 
     // fjerne fra Mariosliste.csv.
-    public static void WriteFile(Liste liste, String filename, int count) throws IOException{
-        File file = new File(filename );
+    public static void WriteFile(Liste liste, String filename, String filename2, int count) throws IOException{
+        File file = new File(filename);
+        File file2 = new File(filename2);
         FileWriter fw = new FileWriter(file, true);
+        FileWriter fw2 = new FileWriter(file2, true);
 	fw.write(count + ";" + liste.toString());
+	fw2.write(count + ";" + liste.toString());
         count++;
         fw.close();
+        fw2.close();
     }
 
     @Override

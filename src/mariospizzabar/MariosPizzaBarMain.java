@@ -31,12 +31,12 @@ public class MariosPizzaBarMain {
                 System.out.println("Indtast bestillingstidspunkt: ");
                 tidspunkt = StringScanner();
                 System.out.println("\nBestilling gennemført:");
-                Bestilling bestilling = new Bestilling(number, tidspunkt);
+                Bestilling bestilling = new Bestilling(number, Menukort.getPizzaByID(number), tidspunkt);
                 Liste marioListe = new Liste(bestilling);
                 System.out.println(bestilling + "\n");
                 marioListe.ListeMaker(bestilling);
                 //System.out.println(marioListe.toString());
-                Liste.WriteFile(marioListe, "Data/Mariosliste.csv", count++);
+                Liste.WriteFile(marioListe, "Data/Mariosliste.csv", "Data/MariosStatistik.csv", count++);
             } else if(number == 5) {
                 runProg = false;
             }
