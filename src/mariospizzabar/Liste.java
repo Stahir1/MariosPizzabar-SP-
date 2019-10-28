@@ -22,13 +22,12 @@ import java.util.Scanner;
 public class Liste {
 
     static String filename = "Data/Mariosliste.csv";
-    private String removeTerm = "";
     private ArrayList<Bestilling> bestillingsListe;
     private int count;
     private static Scanner x;
 
     public Liste(Bestilling bestilling) {
-        this.bestillingsListe = ListeMaker(bestilling);
+        this.bestillingsListe = listeMaker(bestilling);
     }
 
     public void addBestilling(Bestilling bestilling) {
@@ -41,7 +40,7 @@ public class Liste {
         bestillingsListe.remove(bestilling);
     }
 
-    public ArrayList ListeMaker(Bestilling bestilling) {
+    public ArrayList listeMaker(Bestilling bestilling) {
         ArrayList<Bestilling> marioListe = new ArrayList();
 
         marioListe.add(bestilling);
@@ -49,8 +48,7 @@ public class Liste {
         return marioListe;
     }
 
-    public static void WriteFile(Liste liste, String filename, String filename2, int count) throws IOException {
-        
+    public static void writeFile(Liste liste, String filename, String filename2, int count) throws IOException {
         File file = new File(filename);
         File file2 = new File(filename2);
         FileWriter fw = new FileWriter(file, true);
@@ -64,7 +62,7 @@ public class Liste {
         
     }
 
-    public static void ReadFile(String filename) throws FileNotFoundException, IOException {
+    public static void readFile(String filename) throws FileNotFoundException, IOException {
         
         File file = new File(filename);
         
@@ -79,8 +77,8 @@ public class Liste {
         in.close();
     }
     //Inspiration https://www.youtube.com/watch?v=HFC-KspB9l4
-    public static void EditFile (String filename, String removeTerm){
-       String tempFile = "temp.txt";
+    public static void EditFile(String filename, String removeTerm){
+        String tempFile = "Data/Mariosliste.csv";
         File oldFile = new File(filename);
         File newFile = new File(tempFile);
          
@@ -110,7 +108,53 @@ public class Liste {
         catch (Exception e){
             System.out.println("Pizza ikke på listen");
         }
+        
+    }
+    
+    public static void editFile2(String filename, String removeTerm, int positionOfTerm, String delimiter) {
+        int position = positionOfTerm  - 1;
+        String tempFile = "Data/temp.txt";
+        File oldFile = new File(filename);
+        File newFile = new File(tempFile);
+        
+        String currentLine;
+        String data[];
+        
+        try {
+            FileWriter fw = new FileWriter(tempFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
             
+            FileReader fr = new FileReader(filename);
+            BufferedReader br = new BufferedReader(fr);
+            
+            while((currentLine = br.readLine()) != null) {
+                data = currentLine.split(";");
+                if(!(data[position].equalsIgnoreCase(removeTerm))) {
+                    pw.println(currentLine);
+                }
+            }
+            
+            pw.flush();
+            pw.close();
+            fr.close();
+            br.close();
+            bw.close();
+            fw.close();
+            
+            
+            oldFile.delete();
+            File dump = new File(filename);
+            newFile.renameTo(dump);
+            
+            
+            
+        }
+        
+        catch(Exception e) {
+            System.out.println("Pizza ikke på listen.");
+        }
+        
         
     }
 

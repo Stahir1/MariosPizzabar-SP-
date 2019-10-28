@@ -37,3 +37,13 @@ Amerikaner; Pris:
 Victoria; Pris: 
 61; kr., Afhentingstidspunkt: 9]
 
+Le Blissola; Pris: 
+61; kr., Afhentingstidspunkt: 12:12]
+-2
+[Pizzanavn: ;Dennis
+ Pris: ;65
+ kr., Afhentingstidspunkt: 14:43]
+-3;[Pizzanavn: 
+Victoria; Pris: 
+61; kr., Afhentingstidspunkt: 12:32]
+

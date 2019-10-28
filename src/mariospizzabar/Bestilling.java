@@ -1,17 +1,20 @@
 package mariospizzabar;
 
+import java.util.ArrayList;
+
  // @author Sohaib 
  
 public class Bestilling {
           private int ordreID;
           private String bestillingsTidspunkt;
           private Pizza pizza;
-
-    public Bestilling(int ordreID, Pizza pizza, String bestillingsTidspunkt) {
+          
+    public Bestilling(int ordreID, Pizza pizza, String bestillingsTidspunkt, ArrayList bestArr) {
         this.ordreID = ordreID;
         this.bestillingsTidspunkt = bestillingsTidspunkt;
         this.pizza = pizza;
     }
+    
 
     public int getOrdreID() {
         return ordreID;
@@ -38,8 +41,6 @@ public class Bestilling {
     }
     
     
-
-
     @Override
     public String toString() {
         return "Pizzanavn: ;" + pizza.getNavn() + "; Pris: ;" + pizza.getPrice() + "; kr., Afhentingstidspunkt: " + bestillingsTidspunkt;

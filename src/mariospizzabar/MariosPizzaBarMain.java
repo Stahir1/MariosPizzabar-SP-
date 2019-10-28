@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class MariosPizzaBarMain {
     public static void main(String[] args) throws IOException {
         Menukort marioMenukort = new Menukort();
+        ArrayList<Pizza> marioBestillinger = new ArrayList();
         boolean runProg = true;
         int count = 1;
         
@@ -35,27 +36,28 @@ public class MariosPizzaBarMain {
                 tidspunkt = StringScanner();
                 System.out.println("\nBestilling gennemført:");
                 Pizza tempPizza = marioMenukort.getPizzaByID(number);
-                Bestilling bestilling = new Bestilling(number, tempPizza, tidspunkt);
+                Bestilling bestilling = new Bestilling(number, tempPizza, tidspunkt, marioBestillinger);
                 Liste marioListe = new Liste(bestilling);
                 System.out.println(bestilling + "\n");
-                marioListe.ListeMaker(bestilling);
-                //System.out.println(marioListe.toString());
-                Liste.WriteFile(marioListe, "Data/Mariosliste.csv", "Data/MariosStatistik.csv", count++); }
+                marioBestillinger.add(tempPizza);
+                marioListe.listeMaker(bestilling);
+                Liste.writeFile(marioListe, "Data/Mariosliste.csv", "Data/MariosStatistik.csv", count++); 
+                marioListe.removeBestilling(bestilling);
+            }
+            
             else if (number == 3) {
-                Liste.ReadFile("Data/Mariosliste.csv");
+                Liste.readFile("Data/Mariosliste.csv");
                 System.out.println("Vil du fjerne en bestilling? (1 = JA, 2 = NEJ)");
                 number = IntScanner();
                 if (number == 1 ) {
-                    
+                    System.out.println("Hvilken bestilling vil du fjerne? (\"-n\")");
                     String textIn = StringScanner();
-                    StringScanner();
-                    Liste.EditFile("Data/Mariosliste.csv", textIn );
-                    // ToDo: Fjern fra bestilling
+                    Liste.editFile2("Data/Mariosliste.csv", textIn, 1, ";");
                 } else if (number == 2) {
                     
                 }
             } else if (number == 4) {
-                Liste.ReadFile("Data/MariosStatistik.csv");
+                Liste.readFile("Data/MariosStatistik.csv");
                 System.out.println("Tast 1 for at se omsætningen og mest solgte pizzaer.");
                 System.out.println("Tast 2 for at gå til hovedmenuen.");
                 number = IntScanner();
