@@ -1,0 +1,39 @@
+1;[Pizzanavn: 
+Amerikaner; Pris: 
+53; kr., Afhentingstidspunkt: 2]
+1
+[Pizzanavn: ;Vesuvio
+ Pris: ;57
+ kr., Afhentingstidspunkt: 1212]
+-1;[Pizzanavn: 
+Amerikaner; Pris: 
+53; kr., Afhentingstidspunkt: 1932]
+-2
+[Pizzanavn: ;Victoria
+ Pris: ;61
+ kr., Afhentingstidspunkt: 2020]
+-3;[Pizzanavn: 
+Toronfo; Pris: 
+61; kr., Afhentingstidspunkt: 2040]
+
+-1;[Pizzanavn: 
+Amerikaner; Pris: 
+53; kr., Afhentingstidspunkt: 2]
+-2
+[Pizzanavn: ;Cacciatore
+ Pris: ;57
+ kr., Afhentingstidspunkt: 4]
+-3;[Pizzanavn: 
+Victoria; Pris: 
+61; kr., Afhentingstidspunkt: 9]
+
+Amerikaner; Pris: 
+53; kr., Afhentingstidspunkt: 2]
+-2
+[Pizzanavn: ;Cacciatore
+ Pris: ;57
+ kr., Afhentingstidspunkt: 4]
+-3;[Pizzanavn: 
+Victoria; Pris: 
+61; kr., Afhentingstidspunkt: 9]
+

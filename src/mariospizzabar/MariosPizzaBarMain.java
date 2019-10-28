@@ -24,6 +24,7 @@ public class MariosPizzaBarMain {
             // ToDo: Lav resten af indtastningerne (og find ud af hvilke)
             int number = IntScanner();
             String tidspunkt = "";
+            
         
             if (number == 1) {
                 System.out.println("\n" + marioMenukort.toString());
@@ -45,6 +46,10 @@ public class MariosPizzaBarMain {
                 System.out.println("Vil du fjerne en bestilling? (1 = JA, 2 = NEJ)");
                 number = IntScanner();
                 if (number == 1 ) {
+                    
+                    String textIn = StringScanner();
+                    StringScanner();
+                    Liste.EditFile("Data/Mariosliste.csv", textIn );
                     // ToDo: Fjern fra bestilling
                 } else if (number == 2) {
                     

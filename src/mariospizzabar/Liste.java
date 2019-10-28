@@ -1,5 +1,7 @@
 package mariospizzabar;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -22,6 +25,7 @@ public class Liste {
     private String removeTerm = "";
     private ArrayList<Bestilling> bestillingsListe;
     private int count;
+    private static Scanner x;
 
     public Liste(Bestilling bestilling) {
         this.bestillingsListe = ListeMaker(bestilling);
@@ -46,15 +50,18 @@ public class Liste {
     }
 
     public static void WriteFile(Liste liste, String filename, String filename2, int count) throws IOException {
+        
         File file = new File(filename);
         File file2 = new File(filename2);
         FileWriter fw = new FileWriter(file, true);
         FileWriter fw2 = new FileWriter(file2, true);
-        fw.write(count + ";" + liste.toString());
-        fw2.write("-" + count + ";" + liste.toString());
+        fw.write("-" + count + ";" + liste.toString());
+        fw2.write(count + ";" + liste.toString());
+        
         count++;
         fw.close();
         fw2.close();
+        
     }
 
     public static void ReadFile(String filename) throws FileNotFoundException, IOException {
@@ -71,10 +78,39 @@ public class Liste {
         
         in.close();
     }
-    public static void EditFile (String filename){
-        File file = new File(filename);
-        
-        
+    //Inspiration https://www.youtube.com/watch?v=HFC-KspB9l4
+    public static void EditFile (String filename, String removeTerm){
+       String tempFile = "temp.txt";
+        File oldFile = new File(filename);
+        File newFile = new File(tempFile);
+         
+        String ID = "";
+        String name = "";
+        try{
+            FileWriter fw = new FileWriter(tempFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            x = new Scanner(new File(filename));
+            x.useDelimiter(";");
+            
+            while(x.hasNext()){
+                ID = x.next();
+                name = x.next();
+                if(!ID.equals(removeTerm)){
+                    pw.println(ID + ";" + name);
+                }
+            }
+            x.close();
+            pw.flush();
+            pw.close();
+            oldFile.delete();
+            File dump = new File(filename);
+            newFile.renameTo(dump);
+        }
+        catch (Exception e){
+            System.out.println("Pizza ikke på listen");
+        }
+            
         
     }
 
