@@ -76,6 +76,8 @@ public class Liste {
         
         in.close();
     }
+    
+    /*
     //Inspiration https://www.youtube.com/watch?v=HFC-KspB9l4
     public static void EditFile(String filename, String removeTerm){
         String tempFile = "Data/Mariosliste.csv";
@@ -110,7 +112,10 @@ public class Liste {
         }
         
     }
+*/
     
+
+    // Inspiration til kode fra: https://www.youtube.com/watch?v=NceIYifVAQQ
     public static void editFile2(String filename, String removeTerm, int positionOfTerm, String delimiter) {
         int position = positionOfTerm  - 1;
         String tempFile = "Data/temp.txt";
@@ -134,27 +139,26 @@ public class Liste {
                     pw.println(currentLine);
                 }
             }
+           
             
-            pw.flush();
-            pw.close();
-            fr.close();
-            br.close();
-            bw.close();
-            fw.close();
-            
-            
-            oldFile.delete();
-            File dump = new File(filename);
-            newFile.renameTo(dump);
-            
-            
-            
+        pw.flush();
+        pw.close();
+        fr.close();
+        br.close();
+        bw.close();
+        fw.close();
+        
+        oldFile.delete();
+        File dump = new File(filename);
+        newFile.renameTo(dump);
+        
+        
         }
         
         catch(Exception e) {
             System.out.println("Pizza ikke på listen.");
         }
-        
+
         
     }
 
