@@ -72,12 +72,6 @@ public class MariosPizzaBarMain {
             
         }
         
-
-
-
-
-// ToDo: Brug getPizzaById ud fra bestillinger-klassen til statistik delen.
-// System.out.println(Menukort.getPizzaByID(4));
         
     }
     
