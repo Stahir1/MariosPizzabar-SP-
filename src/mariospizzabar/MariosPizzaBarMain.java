@@ -62,7 +62,7 @@ public class MariosPizzaBarMain {
                 System.out.println("Tast 2 for at gå til hovedmenuen.");
                 number = IntScanner();
                 if (number == 1 ) {
-                    // ToDo ^^
+                    Liste.fileToEksp("Data/MariosEkspederet.csv");
                 } else if (number == 2 ) {
                     
                 }

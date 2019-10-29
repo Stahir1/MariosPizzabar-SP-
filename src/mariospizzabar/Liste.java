@@ -78,43 +78,6 @@ public class Liste {
         fr.close();
     }
     
-    /*
-    //Inspiration https://www.youtube.com/watch?v=HFC-KspB9l4
-    public static void EditFile(String filename, String removeTerm){
-        String tempFile = "Data/Mariosliste.csv";
-        File oldFile = new File(filename);
-        File newFile = new File(tempFile);
-         
-        String ID = "";
-        String name = "";
-        try{
-            FileWriter fw = new FileWriter(tempFile, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter pw = new PrintWriter(bw);
-            x = new Scanner(new File(filename));
-            x.useDelimiter(";");
-            
-            while(x.hasNext()){
-                ID = x.next();
-                name = x.next();
-                if(!ID.equals(removeTerm)){
-                    pw.println(ID + ";" + name);
-                }
-            }
-            x.close();
-            pw.flush();
-            pw.close();
-            oldFile.delete();
-            File dump = new File(filename);
-            newFile.renameTo(dump);
-        }
-        catch (Exception e){
-            System.out.println("Pizza ikke på listen");
-        }
-        
-    }
-*/
-    
 
     // Inspiration til kode fra: https://www.youtube.com/watch?v=NceIYifVAQQ
     public static void editFile2(String filename, String removeTerm, int positionOfTerm, String delimiter) {
@@ -190,8 +153,26 @@ public class Liste {
         catch(Exception e) {
             System.out.println("Pizza ikke på listen.");
         }
-
+    }
+    
+    public static void fileToEksp(String filename) throws IOException {
+        File file = new File(filename);
+        FileWriter fw =  new FileWriter(file);
+        Scanner myScan = new Scanner(file);
+        String line = "";
+        int sum = 0;
+   
+        while(myScan.hasNextLine()) {
+            line = myScan.nextLine();
+            // -2;[Pizzanavn: ;Amerikaner; Pris: ;53; kr., Afhentingstidspunkt: 15:16]
+            String[] lineArr = line.split(";");
+            sum += Integer.parseInt(lineArr[4]);
+        }
         
+        System.out.println(sum);
+        
+        fw.close();
+   
     }
 
     @Override
