@@ -41,7 +41,7 @@ public class MariosPizzaBarMain {
                 System.out.println(bestilling + "\n");
                 //marioBestillinger.add(tempPizza);
                 marioListe.listeMaker(bestilling);
-                Liste.writeFile(marioListe, "Data/Mariosliste.csv", "Data/MariosStatistik.csv", count++); 
+                Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++); 
                 marioListe.removeBestilling(bestilling);
             }
             

@@ -48,9 +48,9 @@ public class Liste {
         return marioListe;
     }
 
-    public static void writeFile(Liste liste, String filename, String filename2, int count) throws IOException {
+    public static void writeFile(Liste liste, String filename, int count) throws IOException {
         File file = new File(filename);
-        File file2 = new File(filename2);
+        //File file2 = new File(filename2);
         FileWriter fw = new FileWriter(file, true);
         // FileWriter fw2 = new FileWriter(file2, true);
         fw.write("-" + count + ";" + liste.toString());
