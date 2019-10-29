@@ -52,13 +52,13 @@ public class Liste {
         File file = new File(filename);
         File file2 = new File(filename2);
         FileWriter fw = new FileWriter(file, true);
-        FileWriter fw2 = new FileWriter(file2, true);
+        // FileWriter fw2 = new FileWriter(file2, true);
         fw.write("-" + count + ";" + liste.toString());
-        fw2.write(count + ";" + liste.toString());
+       // fw2.write(count + ";" + liste.toString());
         
         count++;
         fw.close();
-        fw2.close();
+        // fw2.close();
         
     }
 
@@ -122,22 +122,41 @@ public class Liste {
         String tempFile = "Data/temp.txt";
         File oldFile = new File(filename);
         File newFile = new File(tempFile);
+        String tempFile2 = "Data/MariosEkspederet.csv";
+        File ekspFile = new File (tempFile2);
         
         String currentLine;
         String data[];
+        String currentLine2;
+        String data2[];
         
         try {
             FileWriter fw = new FileWriter(tempFile, true);
+            FileWriter fw2 = new FileWriter(tempFile2, true);
+            
             BufferedWriter bw = new BufferedWriter(fw);
+            BufferedWriter bw2 = new BufferedWriter(fw2);
+            
             PrintWriter pw = new PrintWriter(bw);
+            PrintWriter pw2 = new PrintWriter(bw2);
             
             FileReader fr = new FileReader(filename);
+            FileReader fr2 = new FileReader(filename);
+
             BufferedReader br = new BufferedReader(fr);
+            BufferedReader br2 = new BufferedReader(fr2);
             
             while((currentLine = br.readLine()) != null) {
                 data = currentLine.split(";");
                 if(!(data[position].equalsIgnoreCase(removeTerm))) {
                     pw.println(currentLine);
+                }
+            }
+            
+            while((currentLine2 = br2.readLine()) != null) {
+                data2 = currentLine2.split(";");
+                if((data2[position].equalsIgnoreCase(removeTerm))) {
+                    pw2.println(currentLine2);
                 }
             }
            
@@ -149,10 +168,15 @@ public class Liste {
         bw.close();
         fw.close();
         
+        pw2.close();
+        fw2.close();
+        bw2.close();
+        fr2.close();
+        br2.close();
+        
         oldFile.delete();
         File dump = new File(filename);
         newFile.renameTo(dump);
-        
         
         }
         

@@ -7,7 +7,7 @@ import java.io.FileWriter;
 /**
  *
  * @author Sohaib
- */
+ *//*
 public class Statistik {
    static String filename = "Data/MariosStatistik.csv";
    public static void readFile() {
@@ -20,3 +20,4 @@ public class Statistik {
    }
     
 }
+*/
