@@ -57,7 +57,7 @@ public class MariosPizzaBarMain {
                     
                 }
             } else if (number == 4) {
-                Liste.readFile("Data/MariosStatistik.csv");
+                Liste.readFile("Data/MariosEkspederet.csv");
                 System.out.println("Tast 1 for at se omsætningen og mest solgte pizzaer.");
                 System.out.println("Tast 2 for at gå til hovedmenuen.");
                 number = IntScanner();
