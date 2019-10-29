@@ -139,7 +139,7 @@ public class Liste {
             if (oldFile.delete()) {
                 File dump = new File(filename);
                 newFile.renameTo(dump);
-                System.out.println("Bestilling fjernet.");
+                System.out.println("Bestilling ekspederet og fjernet.");
             } else {
                 System.out.println("Bestilling kunne IKKE fjernes.");
             }

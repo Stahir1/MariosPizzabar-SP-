@@ -49,7 +49,7 @@ public class MariosPizzaBarMain {
                 marioListe.removeBestilling(bestilling);
             } else if (number == 3) {
                 Liste.readFile("Data/Mariosliste.csv");
-                System.out.println("Vil du fjerne en bestilling? (1 = JA, 2 = NEJ)");
+                System.out.println("Vil du fjerne en bestilling og markere den som ekspederet? (1 = JA, 2 = NEJ)");
                 number = IntScanner();
                 if (number == 1) {
                     System.out.println("Hvilken bestilling vil du fjerne? (\"-n\")");

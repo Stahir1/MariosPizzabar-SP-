@@ -8,3 +8,4 @@
 -0;[Pizzanavn: ;Test; Pris: ;60; kr., Afhentingstidspunkt: 15:54]
 -0;[Pizzanavn: ;Test; Pris: ;60; kr., Afhentingstidspunkt: 15:54]
 -0;[Pizzanavn: ;Test; Pris: ;60; kr., Afhentingstidspunkt: 15:54]
+-0;[Pizzanavn: ;Test; Pris: ;60; kr., Afhentingstidspunkt: 15:54]
