@@ -18,7 +18,7 @@ public class MariosPizzaBarMain {
             System.out.println("Tast 1 for at se menukortet.");
             System.out.println("Tast 2 for at oprette en bestilling.");
             System.out.println("Tast 3 for at se bestillingslisten.");
-            System.out.println("Tast 4 for at se statistik.");
+            System.out.println("Tast 4 for at se omsætningen.");
             System.out.println("Tast 5 for at lukke programmet.");
             // ToDo: Indtast 3 for se liste over bestillinger
             // ToDo: Indtast 4 for statistik
@@ -57,15 +57,7 @@ public class MariosPizzaBarMain {
                     
                 }
             } else if (number == 4) {
-                Liste.readFile("Data/MariosEkspederet.csv");
-                System.out.println("Tast 1 for at se omsætningen og mest solgte pizzaer.");
-                System.out.println("Tast 2 for at gå til hovedmenuen.");
-                number = IntScanner();
-                if (number == 1 ) {
-                    Liste.fileToEksp("Data/MariosEkspederet.csv");
-                } else if (number == 2 ) {
-                    
-                }
+                Liste.fileToEksp("Data/MariosEkspederet.csv");
             } else if(number == 5) {
                 runProg = false;
             }
