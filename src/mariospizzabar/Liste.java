@@ -168,15 +168,22 @@ public class Liste {
         bw.close();
         fw.close();
         
+
         pw2.close();
         fw2.close();
         bw2.close();
         fr2.close();
         br2.close();
+
+        if(oldFile.delete()) {
+            File dump = new File(filename);
+            newFile.renameTo(dump);    
+            System.out.println("Bestilling fjernet.");
+        } else {
+            System.out.println("Bestilling kunne IKKE fjernes.");
+        }
         
-        oldFile.delete();
-        File dump = new File(filename);
-        newFile.renameTo(dump);
+
         
         }
         
