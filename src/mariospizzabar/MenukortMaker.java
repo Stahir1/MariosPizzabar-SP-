@@ -30,6 +30,7 @@ public class MenukortMaker {
         marioMenu.add(new Pizza(12, "Le Blissola", "tomatsauce, ost, skinke, rejer og oregano", 61));
         marioMenu.add(new Pizza(13, "Venezia", "tomatsauce, ost, skinke, bacon og oregano", 61));
         marioMenu.add(new Pizza(14, "Mafia", "tomatsauce, ost, pepperoni, bacon, løg og oregano", 61));
+        marioMenu.add(new Pizza(15, "Daniela", "tomatsauce, ost, kylling, bacon, løg og oregano", 61));
         marioMenu.add(new Pizza(16, "Mexicano", "tomatsauce, ost, kødsauce, chili, løg, majs og oregano", 65));
         marioMenu.add(new Pizza(17, "Harry Potter", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 70));
         marioMenu.add(new Pizza(18, "Terminator", "tomatsauce, ost, kylling, creme fraiche , hvidløg og oregano", 72));

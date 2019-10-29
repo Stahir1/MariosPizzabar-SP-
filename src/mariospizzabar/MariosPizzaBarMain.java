@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class MariosPizzaBarMain {
     public static void main(String[] args) throws IOException {
         Menukort marioMenukort = new Menukort();
-        ArrayList<Pizza> marioBestillinger = new ArrayList();
+        //ArrayList<Pizza> marioBestillinger = new ArrayList();
         boolean runProg = true;
         int count = 1;
         
@@ -36,10 +36,10 @@ public class MariosPizzaBarMain {
                 tidspunkt = StringScanner();
                 System.out.println("\nBestilling gennemført:");
                 Pizza tempPizza = marioMenukort.getPizzaByID(number);
-                Bestilling bestilling = new Bestilling(number, tempPizza, tidspunkt, marioBestillinger);
+                Bestilling bestilling = new Bestilling(number, tempPizza, tidspunkt);
                 Liste marioListe = new Liste(bestilling);
                 System.out.println(bestilling + "\n");
-                marioBestillinger.add(tempPizza);
+                //marioBestillinger.add(tempPizza);
                 marioListe.listeMaker(bestilling);
                 Liste.writeFile(marioListe, "Data/Mariosliste.csv", "Data/MariosStatistik.csv", count++); 
                 marioListe.removeBestilling(bestilling);
@@ -57,6 +57,7 @@ public class MariosPizzaBarMain {
                     
                 }
             } else if (number == 4) {
+                //Liste.readFile("Data/MariosEkspederet.csv");
                 Liste.fileToEksp("Data/MariosEkspederet.csv");
             } else if(number == 5) {
                 runProg = false;

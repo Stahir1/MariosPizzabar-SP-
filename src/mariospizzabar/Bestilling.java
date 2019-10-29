@@ -9,7 +9,7 @@ public class Bestilling {
           private String bestillingsTidspunkt;
           private Pizza pizza;
           
-    public Bestilling(int ordreID, Pizza pizza, String bestillingsTidspunkt, ArrayList bestArr) {
+    public Bestilling(int ordreID, Pizza pizza, String bestillingsTidspunkt) {
         this.ordreID = ordreID;
         this.bestillingsTidspunkt = bestillingsTidspunkt;
         this.pizza = pizza;
