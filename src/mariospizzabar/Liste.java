@@ -75,6 +75,7 @@ public class Liste {
         }
         
         in.close();
+        fr.close();
     }
     
     /*
@@ -141,7 +142,7 @@ public class Liste {
             }
            
             
-        pw.flush();
+       //pw.flush();
         pw.close();
         fr.close();
         br.close();
