@@ -157,7 +157,6 @@ public class Liste {
     
     public static void fileToEksp(String filename) throws IOException {
         File file = new File(filename);
-        FileWriter fw =  new FileWriter(file);
         Scanner myScan = new Scanner(file);
         String line = "";
         int sum = 0;
@@ -169,9 +168,9 @@ public class Liste {
             sum += Integer.parseInt(lineArr[4]);
         }
         
-        System.out.println(sum);
         
-        fw.close();
+        System.out.println("Din omsætning er: " + sum + " kr.");
+        
    
     }
 
