@@ -16,18 +16,7 @@ public class BestillingTest {
 
     Bestilling bestTest = new Bestilling(1, pizzaTest, "14:54");
 
-    /**
-     * ************************************************************************
-     * Vores bestillingsklasse kan kun have én pizza pr. bestilling. Dette
-     * skyldes, at vi ikke har lavet en addPizzaToOrder-metode. Men da hver
-     * pizza bliver printet og tilføjet til Mariosliste.csv vil pizzaerne blive
-     * gemt der.
-     *
-     * Minusset her er, at man ikke kan bestille f.eks. 3 pizzaer på en gang og
-     * få den skrevet ind under samme bestillings ID. Men det var heller ikke et
-     * krav i kravspecifikationen.
-     *************************************************************************
-     */
+    
     /**
      * Her testes metoden getOrdreID(). Den skal have en bestilling ind og så
      * gemems ordre ID'et, så man kan få fat på det igen.
