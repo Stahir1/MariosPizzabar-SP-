@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Daniel
+ * @author Sohaib, Jimmy, Daniel & Emil.
  */
 public class ListeTest {
     

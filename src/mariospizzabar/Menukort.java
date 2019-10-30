@@ -6,6 +6,7 @@ import java.util.ArrayList;
  *
  * @author Sohaib, Jimmy, Daniel & Emil.
  */
+
 public class Menukort {
 
     private ArrayList<Pizza> menukort;
@@ -27,6 +28,7 @@ public class Menukort {
         menukort.remove(pizza);
     }
 
+    // Vi har lavet et Array som håndterer visningen af Marios menu-kort.
     public ArrayList MenukortShow() {
 
         ArrayList<Pizza> marioMenu = new ArrayList();

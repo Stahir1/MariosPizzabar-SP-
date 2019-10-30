@@ -15,6 +15,8 @@ public class MenukortMaker {
 
     }
 
+    // Metoden bruges når man opretter en bestilling. 
+    // Metoden returnerer en pizza og kommer ind i et Array.
     public void fillCardWithPizza() {
         marioMenu.add(new Pizza(1, "Vesuvio", "tomatsauce, ost, skinke og oregano", 57));
         marioMenu.add(new Pizza(2, "Amerikaner", "tomatsauce, ost, oksefars og oregano", 53));
