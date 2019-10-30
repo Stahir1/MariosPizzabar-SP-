@@ -1,4 +1,3 @@
-
 package mariospizzabar;
 
 import java.util.ArrayList;
@@ -8,6 +7,7 @@ import java.util.ArrayList;
  * @author Daniel
  */
 public class Menukort {
+
     private ArrayList<Pizza> menukort;
     private MenukortMaker menukortMaker;
     private Pizza pizza;
@@ -18,20 +18,19 @@ public class Menukort {
         this.pizza = null;
         this.menukort = MenukortShow();
     }
-    
-    
+
     public void addPizza(Pizza pizza) {
         menukort.add(pizza);
     }
-    
+
     public void removePizza(Pizza pizza) {
         menukort.remove(pizza);
     }
-    
+
     public ArrayList MenukortShow() {
-        
+
         ArrayList<Pizza> marioMenu = new ArrayList();
-        
+
         marioMenu.add(new Pizza(1, "Vesuvio", "tomatsauce, ost, skinke og oregano", 57));
         marioMenu.add(new Pizza(2, "Amerikaner", "tomatsauce, ost, oksefars og oregano", 53));
         marioMenu.add(new Pizza(3, "Cacciatore", "tomatsauce, ost, pepperoni og oregano", 57));
@@ -64,17 +63,15 @@ public class Menukort {
         marioMenu.add(new Pizza(30, "GitEmil", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 68));
         marioMenu.add(new Pizza(30, "Jimmay", "tomatsauce, ost, kylling, bearnaise, creme fraiche og oregano", 75));
         marioMenu.add(new Pizza(31, "Tullebob", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 80));
-        
+
         return marioMenu;
     }
 
-    
-        public Pizza getPizzaByID(int pizzaID){
-            pizza = menukortMaker.getPizzaByID(pizzaID);
-            return pizza;
-        } 
-       
-        
+    public Pizza getPizzaByID(int pizzaID) {
+        pizza = menukortMaker.getPizzaByID(pizzaID);
+        return pizza;
+    }
+
     @Override
     public String toString() {
         String result = "Menuen indeholder:\n";
@@ -83,8 +80,5 @@ public class Menukort {
         }
         return result;
     }
-    
-    
-    
-    
+
 }

@@ -1,4 +1,3 @@
-
 package mariospizzabar;
 
 import java.util.ArrayList;
@@ -8,13 +7,14 @@ import java.util.ArrayList;
  * @author Daniel
  */
 public class MenukortMaker {
+
     private ArrayList<Pizza> marioMenu;
 
     public MenukortMaker() {
         this.marioMenu = new ArrayList<Pizza>();
-        
+
     }
-    
+
     public void fillCardWithPizza() {
         marioMenu.add(new Pizza(1, "Vesuvio", "tomatsauce, ost, skinke og oregano", 57));
         marioMenu.add(new Pizza(2, "Amerikaner", "tomatsauce, ost, oksefars og oregano", 53));
@@ -48,21 +48,17 @@ public class MenukortMaker {
         marioMenu.add(new Pizza(30, "GitEmil", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 68));
         marioMenu.add(new Pizza(30, "Jimmay", "tomatsauce, ost, kylling, bearnaise, creme fraiche og oregano", 75));
         marioMenu.add(new Pizza(31, "Tullebob", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 80));
-        
-        
 
     }
-    
+
     public Pizza getPizzaByID(int pizzaID) {
         Pizza returnPizza = null;
-        for(Pizza pizza : marioMenu) {
-            if(pizza.getID() == pizzaID) {
+        for (Pizza pizza : marioMenu) {
+            if (pizza.getID() == pizzaID) {
                 return pizza;
             }
         }
         return returnPizza;
     }
-    
-    
 
 }

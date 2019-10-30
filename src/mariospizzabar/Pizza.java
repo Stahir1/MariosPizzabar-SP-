@@ -1,8 +1,8 @@
-
 package mariospizzabar;
 
 // @author jimmy
 public class Pizza {
+
     private int ID;
     private String navn;
     private String topping;
@@ -46,7 +46,6 @@ public class Pizza {
     public void setPrice(int price) {
         this.price = price;
     }
-
 
     @Override
     public String toString() {
