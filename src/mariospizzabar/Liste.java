@@ -158,7 +158,7 @@ public class Liste {
 
         while (myScan.hasNextLine()) {
             line = myScan.nextLine();
-            // -2;[Pizzanavn: ;Amerikaner; Pris: ;53; kr., Afhentingstidspunkt: 15:16]
+            // Der splittes i forhold til følgende layout: -2;[Pizzanavn: ;Amerikaner; Pris: ;53; kr., Afhentingstidspunkt: 15:16]
             String[] lineArr = line.split(";");
             sum += Integer.parseInt(lineArr[4]);
         }
