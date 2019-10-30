@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Daniel
+ * @author Sohaib, Jimmy, Daniel & Emil.
  */
 public class MenukortMaker {
 

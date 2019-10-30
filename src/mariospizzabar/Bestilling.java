@@ -2,7 +2,7 @@ package mariospizzabar;
 
 import java.util.ArrayList;
 
-// @author Sohaib 
+// @author Sohaib, Jimmy, Daniel & Emil.
 public class Bestilling {
 
     private int ordreID;

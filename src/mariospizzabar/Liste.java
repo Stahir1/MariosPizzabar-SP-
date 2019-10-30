@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Daniel, Emil
+ * @author Sohaib, Jimmy, Daniel & Emil.
  */
 public class Liste {
 

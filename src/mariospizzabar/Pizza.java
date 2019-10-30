@@ -1,6 +1,6 @@
 package mariospizzabar;
 
-// @author jimmy
+// @author Sohaib, Jimmy, Daniel & Emil.
 public class Pizza {
 
     private int ID;

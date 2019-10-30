@@ -1,6 +1,6 @@
 package mariospizzabar;
 
-// @author Emil
+// @author Sohaib, Jimmy, Daniel & Emil.
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
