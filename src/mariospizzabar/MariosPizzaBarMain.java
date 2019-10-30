@@ -62,6 +62,13 @@ public class MariosPizzaBarMain {
             } else if (number == 4) {
                 //Liste.readFile("Data/MariosEkspederet.csv"); // Mulighed for at læse MariosEkspederet.csv i programmet, hvis ønskes.
                 Liste.fileToEksp("Data/MariosEkspederet.csv");
+                System.out.println("\nVil du se listen over ekspederet ordre? (1 = JA, 2 = NEJ)");
+                number = IntScanner();
+                if(number == 1) {
+                    Liste.readFile("Data/MariosEkspederet.csv");
+                } else if(number == 2) {
+                    
+                }
             } else if (number == 5) {
                 runProg = false;
             }
