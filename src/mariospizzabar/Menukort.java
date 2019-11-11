@@ -48,7 +48,7 @@ public class Menukort {
         String ProductName = resultSet.getString(2);
         String Topping = resultSet.getString(3);
         int Price = resultSet.getInt(4);
-             System.out.println("Produkt ID: " + ProductID + ", Pizzanavn: " + ProductName + ", Topping: " + Topping + ", Pris: " + Price);
+             System.out.println(ProductID + ". " + "" + ProductName + ": " + Topping + ", " + Price + " kr");
         }
      
         resultSet.close();
