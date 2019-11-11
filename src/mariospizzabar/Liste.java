@@ -13,7 +13,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
+import mariospizzabar.Util.DBConnector;
 
 /**
  *
@@ -36,6 +41,30 @@ public class Liste {
 
     public void removeBestilling(Bestilling bestilling) {
         bestillingsListe.remove(bestilling);
+    }
+    
+    public static void addPizzaToDB() throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO mariopizza.orders (OrderID, Pizzaname, Price, PickupTime) VALUES (?, ?, ?, ?)";
+        Connection myConnector = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+        myConnector = DBConnector.getConnector();
+
+        pstmt = myConnector.prepareStatement(query);
+        resultSet = pstmt.executeQuery();
+        while (resultSet.next()) {
+            // Nedenfor deklarerer vi vores kolonne-navne, så vi ikke behøver at
+            // tilføje det inde i vores printline for hver pizza (dvs. 30+ gange)
+        int OrderID = resultSet.getInt(1);
+        String Pizzaname = resultSet.getString(2);
+        int Price = resultSet.getInt(3);
+        String PickupTime = resultSet.getString(4);
+             System.out.println(OrderID + ". " + "" + Pizzaname + ": " + Price + ", " + PickupTime + " kr");
+        }
+     
+        resultSet.close();
+        pstmt.close();
+        myConnector.close();
     }
 
     public ArrayList listeMaker(Bestilling bestilling) {
