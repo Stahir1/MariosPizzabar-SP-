@@ -11,7 +11,6 @@ import mariospizzabar.Util.DBConnector;
  *
  * @author Sohaib, Jimmy, Daniel & Emil.
  */
-
 public class Menukort {
 
     private ArrayList<Pizza> menukort;
@@ -22,7 +21,7 @@ public class Menukort {
         this.menukortMaker = new MenukortMaker();
         this.menukortMaker.fillCardWithPizza();
         this.pizza = null;
-     //   this.menukort = MenukortShow();
+        //   this.menukort = MenukortShow();
     }
 
     public void addPizza(Pizza pizza) {
@@ -32,35 +31,26 @@ public class Menukort {
     public void removePizza(Pizza pizza) {
         menukort.remove(pizza);
     }
-    
-    public static Pizza getPizzaFromDB(int id) throws ClassNotFoundException, SQLException {
-        Pizza retValPizza = null;
-        // TODO: Get movie from DB
-        String query = "SELECT * FROM mariopizza.Products WHERE ProductID = ?";
-        
+
+    public static void getPizzaFromDB() throws ClassNotFoundException, SQLException {
+        String query = "SELECT * FROM mariopizza.Products";
         Connection myConnector = null;
         PreparedStatement pstmt = null;
         ResultSet resultSet = null;
         myConnector = DBConnector.getConnector();
-        
+
         pstmt = myConnector.prepareStatement(query);
-        pstmt.setInt(1, id);
         resultSet = pstmt.executeQuery();
-        while(resultSet.next()) {
-            int ProductID = resultSet.getInt("ProductID");
-            String ProductName = resultSet.getString("ProductName");
-            String Topping = resultSet.getString("Topping");
-            int Price = resultSet.getInt("Price");
-            retValPizza = new Pizza(ProductID, ProductName, Topping, Price);
-            
+        while (resultSet.next()) {
+                System.out.println(resultSet.getString(1) + "," + resultSet.getString(2) + "," + resultSet.getString(3) + "," + resultSet.getString(4) + ",");
         }
+     
         resultSet.close();
         pstmt.close();
         myConnector.close();
-        
-        return retValPizza;
     }
-/*
+
+    /*
     // Vi har lavet et Array som håndterer visningen af Marios menu-kort.
     public ArrayList MenukortShow() {
 
