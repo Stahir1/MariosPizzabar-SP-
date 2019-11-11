@@ -1,6 +1,11 @@
 package mariospizzabar;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import mariospizzabar.Util.DBConnector;
 
 /**
  *
@@ -17,7 +22,7 @@ public class Menukort {
         this.menukortMaker = new MenukortMaker();
         this.menukortMaker.fillCardWithPizza();
         this.pizza = null;
-        this.menukort = MenukortShow();
+     //   this.menukort = MenukortShow();
     }
 
     public void addPizza(Pizza pizza) {
@@ -27,7 +32,35 @@ public class Menukort {
     public void removePizza(Pizza pizza) {
         menukort.remove(pizza);
     }
-
+    
+    public static Pizza getPizzaFromDBById(int id) throws ClassNotFoundException, SQLException {
+        Pizza retValPizza = null;
+        // TODO: Get movie from DB
+        String query = "SELECT * FROM mariopizza.Products WHERE ProductID = ?";
+        
+        Connection myConnector = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+        myConnector = DBConnector.getConnector();
+        
+        pstmt = myConnector.prepareStatement(query);
+        pstmt.setInt(1, id);
+        resultSet = pstmt.executeQuery();
+        while(resultSet.next()) {
+            int ProductID = resultSet.getInt("ProductID");
+            String ProductName = resultSet.getString("ProductName");
+            String Topping = resultSet.getString("Topping");
+            int Price = resultSet.getInt("Price");
+            retValPizza = new Pizza(ProductID, ProductName, Topping, Price);
+            
+        }
+        resultSet.close();
+        pstmt.close();
+        myConnector.close();
+        
+        return retValPizza;
+    }
+/*
     // Vi har lavet et Array som håndterer visningen af Marios menu-kort.
     public ArrayList MenukortShow() {
 
@@ -67,7 +100,7 @@ public class Menukort {
         marioMenu.add(new Pizza(31, "Tullebob", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 80));
 
         return marioMenu;
-    }
+    }*/
 
     public Pizza getPizzaByID(int pizzaID) {
         pizza = menukortMaker.getPizzaByID(pizzaID);

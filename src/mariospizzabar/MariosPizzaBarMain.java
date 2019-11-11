@@ -2,12 +2,13 @@ package mariospizzabar;
 
 // @author Sohaib, Jimmy, Daniel & Emil.
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MariosPizzaBarMain {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
         Menukort marioMenukort = new Menukort();
         boolean runProg = true;
         int count = 1;
@@ -32,7 +33,7 @@ public class MariosPizzaBarMain {
             *******************************************************************/ 
 
             if (number == 1) {
-                System.out.println("\n" + marioMenukort.toString());
+                System.out.println("\n" + Menukort.getPizzaFromDBById());
 
             } else if (number == 2) {
                 System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
