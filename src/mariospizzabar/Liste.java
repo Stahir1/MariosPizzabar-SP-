@@ -43,7 +43,36 @@ public class Liste {
         bestillingsListe.remove(bestilling);
     }
     
-    public static void addPizzaToDB() throws ClassNotFoundException, SQLException {
+    public static void addPizzaToDB(Bestilling bestilling) throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO mariopizza.orders (OrderID, Pizzaname, Price, PickupTime) VALUES (?, ?, ?, ?)";
+        Bestilling retValBestilling = null;
+        Connection myConnector = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+        myConnector = DBConnector.getConnector();
+
+        pstmt = myConnector.prepareStatement(query);
+        int countID = 1;
+        pstmt.setInt(1, countID++);
+        pstmt.setString(2, bestilling.getPizza().getNavn());
+        pstmt.setInt(3, bestilling.getPizza().getPrice());
+        pstmt.setString(4, bestilling.getBestillingsTidspunkt());
+        pstmt.executeUpdate();
+     
+        pstmt.close();
+        myConnector.close();
+    }
+
+    public ArrayList listeMaker(Bestilling bestilling) {
+        ArrayList<Bestilling> marioListe = new ArrayList();
+
+        marioListe.add(bestilling);
+
+        return marioListe;
+    }
+    
+    /*
+    public static void addPizzaToDB(Pizza pizzaNavn, Pizza pizzaPris, String bestTidsp) throws ClassNotFoundException, SQLException {
         String query = "INSERT INTO mariopizza.orders (OrderID, Pizzaname, Price, PickupTime) VALUES (?, ?, ?, ?)";
         Connection myConnector = null;
         PreparedStatement pstmt = null;
@@ -51,15 +80,20 @@ public class Liste {
         myConnector = DBConnector.getConnector();
 
         pstmt = myConnector.prepareStatement(query);
+        int countID = 1;
+        pstmt.setInt(1, countID++);
+        pstmt.setObject(2, pizzaNavn);
+        pstmt.setObject(3, pizzaPris);
+        pstmt.setString(4, bestTidsp);
         resultSet = pstmt.executeQuery();
         while (resultSet.next()) {
             // Nedenfor deklarerer vi vores kolonne-navne, så vi ikke behøver at
             // tilføje det inde i vores printline for hver pizza (dvs. 30+ gange)
-        int OrderID = resultSet.getInt(1);
-        String Pizzaname = resultSet.getString(2);
-        int Price = resultSet.getInt(3);
-        String PickupTime = resultSet.getString(4);
-             System.out.println(OrderID + ". " + "" + Pizzaname + ": " + Price + ", " + PickupTime + " kr");
+            int OrderID = resultSet.getInt("OrderID");
+            String Pizzaname = resultSet.getString("PizzaName");
+            int Price = resultSet.getInt("Price");
+            String PickupTime = resultSet.getString("PickupTime");
+            System.out.println(OrderID + ". " + Pizzaname + ": " + Price + ", " + PickupTime + " kr");
         }
      
         resultSet.close();
@@ -74,6 +108,7 @@ public class Liste {
 
         return marioListe;
     }
+*/
 
     public static void writeFile(Liste liste, String filename, int count) throws IOException {
         File file = new File(filename);
