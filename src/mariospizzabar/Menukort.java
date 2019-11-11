@@ -33,7 +33,7 @@ public class Menukort {
         menukort.remove(pizza);
     }
     
-    public static Pizza getPizzaFromDBById(int id) throws ClassNotFoundException, SQLException {
+    public static Pizza getPizzaFromDB(int id) throws ClassNotFoundException, SQLException {
         Pizza retValPizza = null;
         // TODO: Get movie from DB
         String query = "SELECT * FROM mariopizza.Products WHERE ProductID = ?";
