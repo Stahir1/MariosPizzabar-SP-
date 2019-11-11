@@ -42,7 +42,13 @@ public class Menukort {
         pstmt = myConnector.prepareStatement(query);
         resultSet = pstmt.executeQuery();
         while (resultSet.next()) {
-                System.out.println(resultSet.getString(1) + "," + resultSet.getString(2) + "," + resultSet.getString(3) + "," + resultSet.getString(4) + ",");
+            // Nedenfor deklarerer vi vores kolonne-navne, så vi ikke behøver at
+            // tilføje det inde i vores printline for hver pizza (dvs. 30+ gange)
+        int ProductID = resultSet.getInt(1);
+        String ProductName = resultSet.getString(2);
+        String Topping = resultSet.getString(3);
+        int Price = resultSet.getInt(4);
+             System.out.println("Produkt ID: " + ProductID + ", Pizzanavn: " + ProductName + ", Topping: " + Topping + ", Pris: " + Price);
         }
      
         resultSet.close();

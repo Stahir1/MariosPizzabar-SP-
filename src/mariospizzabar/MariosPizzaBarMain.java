@@ -35,7 +35,6 @@ public class MariosPizzaBarMain {
 
             if (number == 1) {
                 Menukort.getPizzaFromDB();
-              //  System.out.println("\n" + Menukort.getPizzaFromDB());
 
             } else if (number == 2) {
                 System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
