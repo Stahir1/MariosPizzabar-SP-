@@ -17,6 +17,7 @@ CREATE DATABASE IF NOT EXISTS `mariopizza` /*!40100 DEFAULT CHARACTER SET utf8mb
 USE `mariopizza`;
 
 -- Dumping structure for tabel mariopizza.products
+DROP TABLE IF EXISTS `products`;
 CREATE TABLE IF NOT EXISTS `products` (
   `ProductID` int(11) NOT NULL AUTO_INCREMENT,
   `ProductName` varchar(255) DEFAULT NULL,
@@ -26,10 +27,10 @@ CREATE TABLE IF NOT EXISTS `products` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table mariopizza.products: ~2 rows (approximately)
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-/*INSERT INTO `products` (`ProductID`, `ProductName`, `Topping`, `Price`) VALUES
+ALTER TABLE `products` DISABLE KEYS;
+INSERT INTO `products` (`ProductID`, `ProductName`, `Topping`, `Price`) VALUES
 	(1, 'Vesuvio', 'tomatsauce, ost, skinke og oregano', 57),
-	(2, 'test', 'testtopping', 51); */
+	(2, 'test', 'testtopping', 51); 
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
@@ -49,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping structure for tabel shop2.orders
+DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `OrderID` int(11) NOT NULL AUTO_INCREMENT,
   `Pizzaname` varchar(255) DEFAULT NULL,
@@ -58,6 +60,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- Dumping structure for tabel shop2.order_details
+DROP TABLE IF EXISTS `order_details`;
 CREATE TABLE IF NOT EXISTS `order_details` (
   `OrderDetailsID` int(11) NOT NULL AUTO_INCREMENT,
   `OrderID` int(11) DEFAULT NULL,
