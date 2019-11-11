@@ -27,10 +27,44 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 -- Dumping data for table mariopizza.products: ~2 rows (approximately)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` (`ProductID`, `ProductName`, `Topping`, `Price`) VALUES
+/*INSERT INTO `products` (`ProductID`, `ProductName`, `Topping`, `Price`) VALUES
 	(1, 'Vesuvio', 'tomatsauce, ost, skinke og oregano', 57),
-	(2, 'test', 'testtopping', 51);
+	(2, 'test', 'testtopping', 51); */
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+-- --------------------------------------------------------
+-- Vært:                         127.0.0.1
+-- Server-version:               8.0.18 - MySQL Community Server - GPL
+-- ServerOS:                     Win64
+-- HeidiSQL Version:             10.1.0.5464
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- Dumping structure for tabel shop2.orders
+CREATE TABLE IF NOT EXISTS `orders` (
+  `OrderID` int(11) NOT NULL AUTO_INCREMENT,
+  `Pizzaname` varchar(255) DEFAULT NULL,
+  `Price` int(11) DEFAULT NULL,
+  `PickupTime` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`OrderID`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- Dumping structure for tabel shop2.order_details
+CREATE TABLE IF NOT EXISTS `order_details` (
+  `OrderDetailsID` int(11) NOT NULL AUTO_INCREMENT,
+  `OrderID` int(11) DEFAULT NULL,
+  `ProductID` int(11) DEFAULT NULL,
+  `Quantity` int(11) DEFAULT NULL,
+  PRIMARY KEY (`OrderDetailsID`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
