@@ -54,10 +54,13 @@ public class Liste {
         pstmt = myConnector.prepareStatement(query);
       //  int countID = 1;
        // pstmt.setInt(1, countID++);
-        pstmt.setString(1, pizzaer.get(0).getNavn());
-        pstmt.setInt(2, pizzaer.get(0).getPrice());
+       for (Pizza pizza : pizzaer) {
+           int counter = 0;
+        pstmt.setString(1, pizzaer.get(counter).getNavn());
+        pstmt.setInt(2, pizzaer.get(counter).getPrice());
         pstmt.setString(3, bestilling.getAfhentningsTidspunkt().toString());
-        
+        counter++;
+       }
         pstmt.executeUpdate();
      
         pstmt.close();

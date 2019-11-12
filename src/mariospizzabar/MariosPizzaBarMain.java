@@ -11,7 +11,6 @@ public class MariosPizzaBarMain {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
         Menukort marioMenukort = new Menukort();
-        ArrayList<Pizza> marioBestilling = new ArrayList();
         boolean runProg = true;
         boolean bestGo = true;
         int count = 1;
@@ -44,7 +43,7 @@ public class MariosPizzaBarMain {
                 case 2:
                     bestGo = true;
                     while(bestGo) {
-                        BestilProces(number, tidspunkt,marioMenukort, marioBestilling);
+                        BestilProces(number, tidspunkt,marioMenukort);
                         // Her bliver der spurgt om man vil oprette en ny bestilling eller ej.
                         // "1" for exit, alt andet for mere under samme bestilling.
                         number = IntScanner();
@@ -113,7 +112,8 @@ public class MariosPizzaBarMain {
     }
 
     
-    public static void BestilProces(int number, String tidspunkt, Menukort marioMenukort, ArrayList<Pizza> marioBestilling) throws ClassNotFoundException, SQLException, IOException {
+    public static void BestilProces(int number, String tidspunkt, Menukort marioMenukort) throws ClassNotFoundException, SQLException, IOException {
+        ArrayList<Pizza> marioBestilling = new ArrayList();
         boolean bestGo = true;
         int count = 1;
         System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
@@ -128,7 +128,7 @@ public class MariosPizzaBarMain {
         bestilling.getPizzaer();
         System.out.println(bestilling + "\n");
             marioListe.listeMaker(bestilling);
-            Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
+      //      Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
         Liste.addPizzaToDB(marioBestilling, bestilling);
             marioListe.removeBestilling(bestilling);
         System.out.println("Klik på \"1\" for at afslutte bestilling.");
