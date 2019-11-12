@@ -2,19 +2,30 @@ package mariospizzabar;
 
 // @author Sohaib, Jimmy, Daniel & Emil.
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.HashMap;
 import mariospizzabar.Menukort;
+import mariospizzabar.Util.DBConnector;
 
 public class MariosPizzaBarMain {
-
+    
     public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
+        
+        
         Menukort marioMenukort = new Menukort();
         boolean runProg = true;
         boolean bestGo = true;
         int count = 1;
         int choice = 0;
+         HashMap<Integer, ArrayList<Pizza>> PizzaMap = new HashMap<Integer, ArrayList<Pizza>>();
+        /// load previous orders
+        LoadOrdersFromDB(PizzaMap, marioMenukort);
 
         System.out.println("Velkommen til Marios Pizzabar.");
         // runProg loopet håndtere afslutningen af programmet. 
@@ -36,6 +47,10 @@ public class MariosPizzaBarMain {
              * input og hvert nummer har en handling kodet.
              * *****************************************************************
              */
+            int OrderID = PizzaMap.size() + 1;
+            
+            PizzaMap.clear();
+            
             switch (number) {
                 case 1:
                     Menukort.getPizzaFromDB();
@@ -43,7 +58,7 @@ public class MariosPizzaBarMain {
                 case 2:
                     bestGo = true;
                     while(bestGo) {
-                        BestilProces(number, tidspunkt,marioMenukort);
+                        BestilProces(number, tidspunkt, marioMenukort, PizzaMap, OrderID);
                         // Her bliver der spurgt om man vil oprette en ny bestilling eller ej.
                         // "1" for exit, alt andet for mere under samme bestilling.
                         number = IntScanner();
@@ -112,7 +127,7 @@ public class MariosPizzaBarMain {
     }
 
     
-    public static void BestilProces(int number, String tidspunkt, Menukort marioMenukort) throws ClassNotFoundException, SQLException, IOException {
+    public static void BestilProces(int number, String tidspunkt, Menukort marioMenukort, HashMap<Integer, ArrayList<Pizza>> PizzaMap, int OrderID) throws ClassNotFoundException, SQLException, IOException {
         ArrayList<Pizza> marioBestilling = new ArrayList();
         boolean bestGo = true;
         int count = 1;
@@ -129,11 +144,56 @@ public class MariosPizzaBarMain {
         System.out.println(bestilling + "\n");
             marioListe.listeMaker(bestilling);
       //      Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
-        Liste.addPizzaToDB(marioBestilling, bestilling);
+      
+            if(!PizzaMap.containsKey(OrderID))
+            {
+                PizzaMap.put(OrderID, new ArrayList<Pizza>());
+                PizzaMap.get(OrderID).add(tempPizza);
+            }
+            else
+                PizzaMap.get(OrderID).add(tempPizza);
+      
+        Liste.addPizzaToDB(marioBestilling, bestilling, PizzaMap);
             marioListe.removeBestilling(bestilling);
         System.out.println("Klik på \"1\" for at afslutte bestilling.");
         System.out.println("Klik på et andet tal for at fortsætte.");
         
+    }
+    
+    public static void LoadOrdersFromDB(HashMap<Integer, ArrayList<Pizza>> PizzaMap, Menukort marioMenukort) throws ClassNotFoundException, SQLException
+    {
+        String query = "SELECT OrderID, PizzaName, Price, PizzaNumber, PickupTime FROM mariopizza.orders ORDER by OrderID, ordering";
+          
+        Connection myConnector = DBConnector.getConnector();
+        Statement stmt = myConnector.createStatement();
+        ResultSet resultSet = stmt.executeQuery(query);
+        
+        if(resultSet == null)
+        {
+            myConnector.close();
+            return;
+        }
+        
+        while (resultSet.next())
+        {
+            int OrderID = resultSet.getInt(1);
+            //String PizzaName = resultSet.getString(2);
+            //int Price = resultSet.getInt(3);
+            int PizzaNumber = resultSet.getInt(4);
+            //String PickupTime = resultSet.getString(5);
+            
+            if(!PizzaMap.containsKey(OrderID))
+            {
+                PizzaMap.put(OrderID, new ArrayList<Pizza>());
+                PizzaMap.get(OrderID).add(marioMenukort.getPizzaByID(PizzaNumber));
+            }
+            else
+                PizzaMap.get(OrderID).add(marioMenukort.getPizzaByID(PizzaNumber));
+            
+            
+        }
+        
+        myConnector.close();
     }
             
             

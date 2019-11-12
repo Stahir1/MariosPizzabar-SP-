@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Scanner;
 import mariospizzabar.Util.DBConnector;
 
@@ -43,8 +44,9 @@ public class Liste {
         bestillingsListe.remove(bestilling);
     }
     
-    public static void addPizzaToDB(ArrayList<Pizza> pizzaer, Bestilling bestilling) throws ClassNotFoundException, SQLException {
-        String query = "INSERT INTO mariopizza.orders (Pizzaname, Price, PickupTime) VALUES (?, ?, ?)";
+    public static void addPizzaToDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, HashMap<Integer, ArrayList<Pizza>> map) throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO mariopizza.orders (OrderID, Ordering, Pizzaname, Price, PizzaNumber, PickupTime) VALUES (?, ?, ?, ?, ?, ?)";
+        //String query = "INSERT INTO mariopizza.orders (Pizzaname, Price, PickupTime) VALUES (?, ?, ?)";
         //ArrayList<Pizza> retValPizzaer = null;
         Connection myConnector = null;
         PreparedStatement pstmt = null;
@@ -52,14 +54,21 @@ public class Liste {
         myConnector = DBConnector.getConnector();
 
         pstmt = myConnector.prepareStatement(query);
-      //  int countID = 1;
-       // pstmt.setInt(1, countID++);
-       for (Pizza pizza : pizzaer) {
-           int counter = 0;
-        pstmt.setString(1, pizzaer.get(counter).getNavn());
-        pstmt.setInt(2, pizzaer.get(counter).getPrice());
-        pstmt.setString(3, bestilling.getAfhentningsTidspunkt().toString());
-        counter++;
+        
+       for (HashMap.Entry<Integer, ArrayList<Pizza>> entry : map.entrySet())
+       {
+           Integer Key = entry.getKey();
+           ArrayList<Pizza> Value = entry.getValue();
+           
+           for (int i = 0; i < Value.size(); ++i)
+           {
+                pstmt.setInt(1, Key);
+                pstmt.setInt(2, i);
+                pstmt.setString(3, Value.get(i).getNavn());
+                pstmt.setInt(4, Value.get(i).getPrice());
+                pstmt.setInt(5, Value.get(i).getID());
+                pstmt.setString(6, bestilling.getAfhentningsTidspunkt().toString());
+           }
        }
         pstmt.executeUpdate();
      
