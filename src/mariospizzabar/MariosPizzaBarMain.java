@@ -115,7 +115,7 @@ public class MariosPizzaBarMain {
     
     public static void BestilProces(String tidspunkt, Menukort marioMenukort) throws ClassNotFoundException, SQLException, IOException {
         ArrayList<Pizza> marioBestilling = new ArrayList();
-        int number = 0;
+        Integer number = 0;
         boolean bestGo = true;
         int count = 1;
         System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
@@ -126,11 +126,11 @@ public class MariosPizzaBarMain {
             System.out.println("Tast \"-1\" når du er færdig med bestillingen.");
             System.out.println("Indtast Pizzanummer: ");
         }
-        Bestilling bestilling = new Bestilling(number, tidspunkt, marioBestilling);
-        Liste marioListe = new Liste(bestilling);
         System.out.println("Indtast afhentingstidspunkt (Eks. \"10:30\"): ");
         tidspunkt = StringScanner();
         System.out.println("\nBestilling gennemført:");
+        Bestilling bestilling = new Bestilling(number, tidspunkt, marioBestilling);
+        Liste marioListe = new Liste(bestilling);
         
         bestilling.getPizzaer();
         System.out.println(bestilling + "\n");
