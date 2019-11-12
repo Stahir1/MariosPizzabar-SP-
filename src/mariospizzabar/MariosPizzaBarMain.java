@@ -115,7 +115,7 @@ public class MariosPizzaBarMain {
     
     public static void BestilProces(String tidspunkt, Menukort marioMenukort) throws ClassNotFoundException, SQLException, IOException {
         ArrayList<Pizza> marioBestilling = new ArrayList();
-        Integer number = 0;
+        int number = 0;
         boolean bestGo = true;
         int count = 1;
         System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
