@@ -22,7 +22,7 @@ public class MariosPizzaBarMain {
         // Vi har en runProg boolean som er true som bliver ved med at køre programmet
         // indtil at runProg bliver false, hvorefter programmet lukkes. 
         
-        while (runProg) {
+        while(runProg) {
             System.out.println("Tast 1 for at se menukortet.");
             System.out.println("Tast 2 for at oprette en bestilling.");
             System.out.println("Tast 3 for at se bestillingslisten.");
@@ -42,32 +42,18 @@ public class MariosPizzaBarMain {
                     Menukort.getPizzaFromDB();
                     break;
                 case 2:
+                    bestGo = true;
                     while(bestGo) {
-                        System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
+                        BestilProces(number, tidspunkt,marioMenukort, marioBestilling);
+                        // Her bliver der spurgt om man vil oprette en ny bestilling eller ej.
+                        // "1" for exit, alt andet for mere under samme bestilling.
                         number = IntScanner();
-                        System.out.println("Indtast afhentingstidspunkt (Eks. \"10:30\"): ");
-                        tidspunkt = StringScanner();
-                        System.out.println("\nBestilling gennemført:");
-                        Pizza tempPizza = marioMenukort.getPizzaByID(number);
-                        marioBestilling.add(tempPizza);
-                        Bestilling bestilling = new Bestilling(number, tidspunkt, marioBestilling);
-                        Liste marioListe = new Liste(bestilling);
-                        bestilling.getPizzaer();
-                        System.out.println(bestilling + "\n");
-                        //marioListe.listeMaker(bestilling);
-                        //Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
-                            //Liste.addPizzaToDB(bestilling.getPizzaer());
-                        //marioListe.removeBestilling(bestilling);
-                        System.out.println("Klik på \"1\" for at afslutte bestilling.");
-                        System.out.println("Klik på et andet tal for at fortsætte.");
-                        IntScanner();
                         if(number == 1) {
-                            bestGo = false;
-                            //break;
+                        bestGo = false;
                         } else {
                         }
                     }
-                    bestGo = true;
+                    break;
                 case 3:
                     Liste.readFile("Data/Mariosliste.csv");
                     System.out.println("Vil du fjerne en bestilling og markere den som ekspederet? (1 = JA, 2 = NEJ)");
@@ -126,4 +112,29 @@ public class MariosPizzaBarMain {
         return bogstaver;
     }
 
+    
+    public static void BestilProces(int number, String tidspunkt, Menukort marioMenukort, ArrayList<Pizza> marioBestilling) throws ClassNotFoundException, SQLException, IOException {
+        boolean bestGo = true;
+        int count = 1;
+        System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
+        number = IntScanner();
+        System.out.println("Indtast afhentingstidspunkt (Eks. \"10:30\"): ");
+        tidspunkt = StringScanner();
+        System.out.println("\nBestilling gennemført:");
+        Pizza tempPizza = marioMenukort.getPizzaByID(number);
+        marioBestilling.add(tempPizza);
+        Bestilling bestilling = new Bestilling(number, tidspunkt, marioBestilling);
+        Liste marioListe = new Liste(bestilling);
+        bestilling.getPizzaer();
+        System.out.println(bestilling + "\n");
+            marioListe.listeMaker(bestilling);
+            Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
+        Liste.addPizzaToDB(marioBestilling, bestilling);
+            marioListe.removeBestilling(bestilling);
+        System.out.println("Klik på \"1\" for at afslutte bestilling.");
+        System.out.println("Klik på et andet tal for at fortsætte.");
+        
+    }
+            
+            
 }

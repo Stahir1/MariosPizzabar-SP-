@@ -46,8 +46,8 @@ public class Bestilling {
         return afhentningsTidspunkt;
     }
 
-    public void setAfhentningsTidspunkt(LocalTime bestillingsTidspunkt) {
-        this.afhentningsTidspunkt = bestillingsTidspunkt;
+    public void setAfhentningsTidspunkt(LocalTime afhentningsTidspunkt) {
+        this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
 
 
@@ -55,8 +55,8 @@ public class Bestilling {
     public String toString() {
         String result = "";
         for(Pizza pizza : pizzaer) {
-            result += pizza.toString();
-        } 
+            result += pizza.toString() + "\n";
+        }
         return result;
     }
 

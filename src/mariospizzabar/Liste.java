@@ -56,7 +56,7 @@ public class Liste {
        // pstmt.setInt(1, countID++);
         pstmt.setString(1, pizzaer.get(0).getNavn());
         pstmt.setInt(2, pizzaer.get(0).getPrice());
-        //pstmt.setString(3, bestilling.getAfhentningsTidspunkt());
+        pstmt.setString(3, bestilling.getAfhentningsTidspunkt().toString());
         
         pstmt.executeUpdate();
      
