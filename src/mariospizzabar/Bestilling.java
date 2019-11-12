@@ -21,11 +21,23 @@ public class Bestilling {
     private int ordreID;
     private String bestillingsTidspunkt;
     private Pizza pizza;
+    private ArrayList<Pizza> bestil;
 
-    public Bestilling(int ordreID, Pizza pizza, String bestillingsTidspunkt) {
+    public Bestilling(int ordreID, Pizza pizza, String bestillingsTidspunkt, ArrayList bestil) {
         this.ordreID = ordreID;
         this.bestillingsTidspunkt = bestillingsTidspunkt;
         this.pizza = pizza;
+        this.bestil = bestil;
+    }
+    
+    
+    
+    public void addPizzasToBestil(Bestilling bestilling) {
+        bestil.add(pizza);
+    }
+
+    public ArrayList<Pizza> getBestil() {
+        return bestil;
     }
 
     public int getOrdreID() {

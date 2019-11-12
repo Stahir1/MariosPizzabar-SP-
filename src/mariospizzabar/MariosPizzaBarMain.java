@@ -11,7 +11,9 @@ public class MariosPizzaBarMain {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
         Menukort marioMenukort = new Menukort();
+        ArrayList<Pizza> marioBest = new ArrayList();
         boolean runProg = true;
+        boolean bestGo = true;
         int count = 1;
         int choice = 0;
 
@@ -40,20 +42,31 @@ public class MariosPizzaBarMain {
                     Menukort.getPizzaFromDB();
                     break;
                 case 2:
-                    System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
-                    number = IntScanner();
-                    System.out.println("Indtast afhentingstidspunkt: ");
-                    tidspunkt = StringScanner();
-                    System.out.println("\nBestilling gennemført:");
-                    Pizza tempPizza = marioMenukort.getPizzaByID(number);
-                    Bestilling bestilling = new Bestilling(number, tempPizza, tidspunkt);
-                    Liste marioListe = new Liste(bestilling);
-                    System.out.println(bestilling + "\n");
-                    marioListe.listeMaker(bestilling);
-                    Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
-                    Liste.addPizzaToDB(bestilling);
-                    marioListe.removeBestilling(bestilling);
-                    break;
+                    while(bestGo) {
+                        System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
+                        number = IntScanner();
+                        System.out.println("Indtast afhentingstidspunkt: ");
+                        tidspunkt = StringScanner();
+                        System.out.println("\nBestilling gennemført:");
+                        Pizza tempPizza = marioMenukort.getPizzaByID(number);
+                        Bestilling bestilling = new Bestilling(number, tempPizza, tidspunkt, marioBest);
+                        Liste marioListe = new Liste(bestilling);
+                        bestilling.addPizzasToBestil(bestilling);
+                        System.out.println(bestilling + "\n");
+                        //marioListe.listeMaker(bestilling);
+                        //Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
+                        Liste.addPizzaToDB(bestilling);
+                        //marioListe.removeBestilling(bestilling);
+                        System.out.println("Klik på \"1\" for at afslutte bestilling.");
+                        System.out.println("Klik på et andet tal for at fortsætte.");
+                        IntScanner();
+                        if(number == 1) {
+                            bestGo = false;
+                            //break;
+                        } else {
+                        }
+                    }
+                    bestGo = true;
                 case 3:
                     Liste.readFile("Data/Mariosliste.csv");
                     System.out.println("Vil du fjerne en bestilling og markere den som ekspederet? (1 = JA, 2 = NEJ)");
