@@ -63,6 +63,8 @@ public class MariosPizzaBarMain {
                         String textIn = StringScanner();
                         Liste.editFile2("Data/Mariosliste.csv", textIn, 1, ";");
                     } else if (number == 2) {
+                    } else {
+                        System.out.println("Du har hverken tastet \"1\" eller \"2\"");
                     }
                     break;
                 case 4:

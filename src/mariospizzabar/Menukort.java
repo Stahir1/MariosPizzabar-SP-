@@ -44,11 +44,11 @@ public class Menukort {
         while (resultSet.next()) {
             // Nedenfor deklarerer vi vores kolonne-navne, så vi ikke behøver at
             // tilføje det inde i vores printline for hver pizza (dvs. 30+ gange)
-        int ProductID = resultSet.getInt("ProductID");
-        String ProductName = resultSet.getString("ProductName");
-        String Topping = resultSet.getString("Topping");
-        int Price = resultSet.getInt("Price");
-             System.out.println(ProductID + ". " + "" + ProductName + ": " + Topping + ", " + Price + " kr");
+            int ProductID = resultSet.getInt("ProductID");
+            String ProductName = resultSet.getString("ProductName");
+            String Topping = resultSet.getString("Topping");
+            int Price = resultSet.getInt("Price");
+            System.out.println(ProductID + ". " + "" + ProductName + ": " + Topping + ", " + Price + " kr");
         }
      
         resultSet.close();
