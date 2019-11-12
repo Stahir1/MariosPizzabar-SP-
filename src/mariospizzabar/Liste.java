@@ -43,9 +43,9 @@ public class Liste {
         bestillingsListe.remove(bestilling);
     }
     
-    public static void addPizzaToDB(Bestilling bestilling) throws ClassNotFoundException, SQLException {
+    public static void addPizzaToDB(ArrayList<Pizza> pizzaer, Bestilling bestilling) throws ClassNotFoundException, SQLException {
         String query = "INSERT INTO mariopizza.orders (Pizzaname, Price, PickupTime) VALUES (?, ?, ?)";
-        Bestilling retValBestilling = null;
+        //ArrayList<Pizza> retValPizzaer = null;
         Connection myConnector = null;
         PreparedStatement pstmt = null;
         ResultSet resultSet = null;
@@ -54,9 +54,10 @@ public class Liste {
         pstmt = myConnector.prepareStatement(query);
       //  int countID = 1;
        // pstmt.setInt(1, countID++);
-        pstmt.setString(1, bestilling.getPizza().getNavn());
-        pstmt.setInt(2, bestilling.getPizza().getPrice());
-        pstmt.setString(3, bestilling.getBestillingsTidspunkt());
+        pstmt.setString(1, pizzaer.get(0).getNavn());
+        pstmt.setInt(2, pizzaer.get(0).getPrice());
+        //pstmt.setString(3, bestilling.getAfhentningsTidspunkt());
+        
         pstmt.executeUpdate();
      
         pstmt.close();

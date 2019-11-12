@@ -11,7 +11,7 @@ public class MariosPizzaBarMain {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
         Menukort marioMenukort = new Menukort();
-        ArrayList<Pizza> marioBest = new ArrayList();
+        ArrayList<Pizza> marioBestilling = new ArrayList();
         boolean runProg = true;
         boolean bestGo = true;
         int count = 1;
@@ -45,17 +45,18 @@ public class MariosPizzaBarMain {
                     while(bestGo) {
                         System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
                         number = IntScanner();
-                        System.out.println("Indtast afhentingstidspunkt: ");
+                        System.out.println("Indtast afhentingstidspunkt (Eks. \"10:30\"): ");
                         tidspunkt = StringScanner();
                         System.out.println("\nBestilling gennemført:");
                         Pizza tempPizza = marioMenukort.getPizzaByID(number);
-                        Bestilling bestilling = new Bestilling(number, tempPizza, tidspunkt, marioBest);
+                        marioBestilling.add(tempPizza);
+                        Bestilling bestilling = new Bestilling(number, tidspunkt, marioBestilling);
                         Liste marioListe = new Liste(bestilling);
-                        bestilling.addPizzasToBestil(bestilling);
+                        bestilling.getPizzaer();
                         System.out.println(bestilling + "\n");
                         //marioListe.listeMaker(bestilling);
                         //Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
-                        Liste.addPizzaToDB(bestilling);
+                            //Liste.addPizzaToDB(bestilling.getPizzaer());
                         //marioListe.removeBestilling(bestilling);
                         System.out.println("Klik på \"1\" for at afslutte bestilling.");
                         System.out.println("Klik på et andet tal for at fortsætte.");

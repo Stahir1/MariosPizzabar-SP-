@@ -1,5 +1,6 @@
 package mariospizzabar;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 // @author Sohaib, Jimmy, Daniel & Emil.
@@ -19,25 +20,18 @@ public class Bestilling {
      */
     
     private int ordreID;
-    private String bestillingsTidspunkt;
-    private Pizza pizza;
-    private ArrayList<Pizza> bestil;
+    private LocalTime afhentningsTidspunkt;
+    private ArrayList<Pizza> pizzaer;
 
-    public Bestilling(int ordreID, Pizza pizza, String bestillingsTidspunkt, ArrayList bestil) {
+    public Bestilling(int ordreID, String afhentningsTidspunkt, ArrayList<Pizza> pizzaer) {
         this.ordreID = ordreID;
-        this.bestillingsTidspunkt = bestillingsTidspunkt;
-        this.pizza = pizza;
-        this.bestil = bestil;
-    }
-    
-    
-    
-    public void addPizzasToBestil(Bestilling bestilling) {
-        bestil.add(pizza);
+        String[] temp = afhentningsTidspunkt.split(":");
+        this.afhentningsTidspunkt = LocalTime.of(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
+        this.pizzaer = pizzaer;
     }
 
-    public ArrayList<Pizza> getBestil() {
-        return bestil;
+    public ArrayList<Pizza> getPizzaer() {
+        return pizzaer;
     }
 
     public int getOrdreID() {
@@ -48,25 +42,22 @@ public class Bestilling {
         this.ordreID = ordreID;
     }
 
-    public String getBestillingsTidspunkt() {
-        return bestillingsTidspunkt;
+    public LocalTime getAfhentningsTidspunkt() {
+        return afhentningsTidspunkt;
     }
 
-    public void setBestillingsTidspunkt(String bestillingsTidspunkt) {
-        this.bestillingsTidspunkt = bestillingsTidspunkt;
+    public void setAfhentningsTidspunkt(LocalTime bestillingsTidspunkt) {
+        this.afhentningsTidspunkt = bestillingsTidspunkt;
     }
 
-    public Pizza getPizza() {
-        return pizza;
-    }
-
-    public void setPizza(Pizza pizza) {
-        this.pizza = pizza;
-    }
 
     @Override
     public String toString() {
-        return "Pizzanavn: ;" + pizza.getNavn() + "; Pris: ;" + pizza.getPrice() + "; kr., Afhentingstidspunkt: " + bestillingsTidspunkt;
+        String result = "";
+        for(Pizza pizza : pizzaer) {
+            result += pizza.toString();
+        } 
+        return result;
     }
 
 }
