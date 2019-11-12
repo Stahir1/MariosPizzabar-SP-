@@ -55,7 +55,23 @@ public class Menukort {
         pstmt.close();
         myConnector.close();
     }
-
+    public static void getBestillingFromDB() throws ClassNotFoundException, SQLException{
+        String query = "SELECT Pizzaname, Price, PickupTime FROM mariopizza.Orders";
+        Connection myConnector = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+        myConnector = DBConnector.getConnector();
+        
+        pstmt = myConnector.prepareStatement(query);
+        resultSet = pstmt.executeQuery();
+        while(resultSet.next()){
+        String ProductName = resultSet.getString("PizzaName");
+            int Price = resultSet.getInt("Price");
+            String PickupTime = resultSet.getString("PickupTime");
+           
+            System.out.println(ProductName + Price + PickupTime);
+    }
+    }
     /*
     // Vi har lavet et Array som håndterer visningen af Marios menu-kort.
     public ArrayList MenukortShow() {
