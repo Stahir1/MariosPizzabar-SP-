@@ -16,9 +16,8 @@ public class Bestilling {
      * Minusset her er, at man ikke kan bestille f.eks. 3 pizzaer på en gang og
      * få den skrevet ind under samme bestillings ID. Men det var heller ikke et
      * krav i kravspecifikationen.
-     *************************************************************************
+     * ************************************************************************
      */
-    
     private int ordreID;
     private LocalTime afhentningsTidspunkt;
     private ArrayList<Pizza> pizzaer;
@@ -50,11 +49,10 @@ public class Bestilling {
         this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
 
-
     @Override
     public String toString() {
         String result = "";
-        for(Pizza pizza : pizzaer) {
+        for (Pizza pizza : pizzaer) {
             result += pizza.toString() + "\n";
         }
         return result;

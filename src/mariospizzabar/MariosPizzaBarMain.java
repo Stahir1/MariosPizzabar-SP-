@@ -2,10 +2,14 @@ package mariospizzabar;
 
 // @author Sohaib, Jimmy, Daniel & Emil.
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 import mariospizzabar.Menukort;
+import mariospizzabar.Util.DBConnector;
 
 public class MariosPizzaBarMain {
 
@@ -41,17 +45,7 @@ public class MariosPizzaBarMain {
                     Menukort.getPizzaFromDB();
                     break;
                 case 2:
-                    bestGo = true;
-                    while(bestGo) {
-                        BestilProces(tidspunkt,marioMenukort);
-                        // Her bliver der spurgt om man vil oprette en ny bestilling eller ej.
-                        // "1" for exit, alt andet for mere under samme bestilling.
-                        number = IntScanner();
-                        if(number == 1) {
-                        bestGo = false;
-                        } else {
-                        }
-                    }
+                    BestilProces(tidspunkt, marioMenukort);
                     break;
                 case 3:
                     //Liste.readFile("Data/Mariosliste.csv");
@@ -112,17 +106,43 @@ public class MariosPizzaBarMain {
         return bogstaver;
     }
 
-    
     public static void BestilProces(String tidspunkt, Menukort marioMenukort) throws ClassNotFoundException, SQLException, IOException {
         ArrayList<Pizza> marioBestilling = new ArrayList();
         int number = 0;
         boolean bestGo = true;
         int count = 1;
         System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
+        
+        int orderId = 0;
+        
+        String query = "SELECT MAX(orderid) FROM orders;"; 
+
+        Connection myConnector = DBConnector.getConnector();
+        Statement stmt = myConnector.createStatement();
+        ResultSet resultSet = stmt.executeQuery(query);
+
+        if(resultSet == null) // hvis querien (åbenbart) ikke kan finde orderid, 
+                              // sætter vi default orderID til 1 og lukker forbindelsen.
+        {
+            myConnector.close();
+            orderId = 1;
+        }
+        else
+        {
+            if(resultSet.next()) // Dette undgår at programmet crasher når nedenstående resultSet.getInt bliver kaldt. 
+                orderId = resultSet.getInt(1) + 1; // benytter vores MAX query
+                 // som er angivet i String query og tilføj +1 til den nye ordre.
+                 // sat til 1 da indexet starter ved 1 og ikke 0. 
+        }
+        
+        myConnector.close();
+        
         while(number != -1) {
             number = IntScanner();
             Pizza tempPizza = marioMenukort.getPizzaByID(number);
-            marioBestilling.add(tempPizza);
+            
+            if(tempPizza != null)
+                marioBestilling.add(tempPizza);
             System.out.println("Tast \"-1\" når du er færdig med bestillingen.");
             System.out.println("Indtast Pizzanummer: ");
         }
@@ -133,10 +153,10 @@ public class MariosPizzaBarMain {
         Liste marioListe = new Liste(bestilling);
         
         bestilling.getPizzaer();
-        System.out.println(bestilling + "\n");
+        System.out.println(bestilling.toString() + "\n");
             marioListe.listeMaker(bestilling);
       //      Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
-        Liste.addPizzaToDB(marioBestilling, bestilling);
+        Liste.addPizzaToDB(marioBestilling, bestilling, orderId);
         //    marioListe.removeBestilling(bestilling);
         System.out.println("Klik på \"1\" for at afslutte bestilling.");
         System.out.println("Klik på et andet tal for at fortsætte.");

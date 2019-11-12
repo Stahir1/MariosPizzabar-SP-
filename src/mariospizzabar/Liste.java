@@ -43,8 +43,8 @@ public class Liste {
         bestillingsListe.remove(bestilling);
     }
     
-    public static void addPizzaToDB(ArrayList<Pizza> pizzaer, Bestilling bestilling) throws ClassNotFoundException, SQLException {
-        String query = "INSERT INTO mariopizza.orders (Pizzaname, Price, PickupTime) VALUES (?, ?, ?)";
+    public static void addPizzaToDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, int orderId) throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO mariopizza.orders (OrderId, Ordering, Pizzaname, Price, PickupTime) VALUES (?, ?, ?, ?, ?)";
         //ArrayList<Pizza> retValPizzaer = null;
         Connection myConnector = null;
         PreparedStatement pstmt = null;
@@ -54,14 +54,15 @@ public class Liste {
         pstmt = myConnector.prepareStatement(query);
       //  int countID = 1;
        // pstmt.setInt(1, countID++);
-       for (Pizza pizza : pizzaer) {
-           int counter = 0;
-        pstmt.setString(1, pizzaer.get(counter).getNavn());
-        pstmt.setInt(2, pizzaer.get(counter).getPrice());
-        pstmt.setString(3, bestilling.getAfhentningsTidspunkt().toString());
-        counter++;
+       for (int i = 0; i < pizzaer.size(); i++) {
+            pstmt.setInt(1, orderId);
+            pstmt.setInt(2, i+1); // for at lave ordering kolennen i order table starte på 1 i stedet for 0.
+            pstmt.setString(3, pizzaer.get(i).getNavn());
+            pstmt.setInt(4, pizzaer.get(i).getPrice());
+            pstmt.setString(5, bestilling.getAfhentningsTidspunkt().toString());
+            
+            pstmt.executeUpdate();
        }
-        pstmt.executeUpdate();
      
         pstmt.close();
         myConnector.close();
