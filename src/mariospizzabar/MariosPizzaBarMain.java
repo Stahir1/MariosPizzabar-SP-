@@ -43,7 +43,7 @@ public class MariosPizzaBarMain {
                 case 2:
                     bestGo = true;
                     while(bestGo) {
-                        BestilProces(number, tidspunkt,marioMenukort);
+                        BestilProces(tidspunkt,marioMenukort);
                         // Her bliver der spurgt om man vil oprette en ny bestilling eller ej.
                         // "1" for exit, alt andet for mere under samme bestilling.
                         number = IntScanner();
@@ -54,7 +54,8 @@ public class MariosPizzaBarMain {
                     }
                     break;
                 case 3:
-                    Liste.readFile("Data/Mariosliste.csv");
+                    //Liste.readFile("Data/Mariosliste.csv");
+                    Liste.readOrdersFromDB();
                     System.out.println("Vil du fjerne en bestilling og markere den som ekspederet? (1 = JA, 2 = NEJ)");
                     number = IntScanner();
                     if (number == 1) {
@@ -112,25 +113,31 @@ public class MariosPizzaBarMain {
     }
 
     
-    public static void BestilProces(int number, String tidspunkt, Menukort marioMenukort) throws ClassNotFoundException, SQLException, IOException {
+    public static void BestilProces(String tidspunkt, Menukort marioMenukort) throws ClassNotFoundException, SQLException, IOException {
         ArrayList<Pizza> marioBestilling = new ArrayList();
+        int number = 0;
         boolean bestGo = true;
         int count = 1;
         System.out.println("\nLav en bestilling. \nIndtast Pizzanummer: ");
-        number = IntScanner();
+        while(number != -1) {
+            number = IntScanner();
+            Pizza tempPizza = marioMenukort.getPizzaByID(number);
+            marioBestilling.add(tempPizza);
+            System.out.println("Tast \"-1\" når du er færdig med bestillingen.");
+            System.out.println("Indtast Pizzanummer: ");
+        }
+        Bestilling bestilling = new Bestilling(number, tidspunkt, marioBestilling);
+        Liste marioListe = new Liste(bestilling);
         System.out.println("Indtast afhentingstidspunkt (Eks. \"10:30\"): ");
         tidspunkt = StringScanner();
         System.out.println("\nBestilling gennemført:");
-        Pizza tempPizza = marioMenukort.getPizzaByID(number);
-        marioBestilling.add(tempPizza);
-        Bestilling bestilling = new Bestilling(number, tidspunkt, marioBestilling);
-        Liste marioListe = new Liste(bestilling);
+        
         bestilling.getPizzaer();
         System.out.println(bestilling + "\n");
             marioListe.listeMaker(bestilling);
       //      Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
         Liste.addPizzaToDB(marioBestilling, bestilling);
-            marioListe.removeBestilling(bestilling);
+        //    marioListe.removeBestilling(bestilling);
         System.out.println("Klik på \"1\" for at afslutte bestilling.");
         System.out.println("Klik på et andet tal for at fortsætte.");
         
