@@ -1,7 +1,12 @@
 package mariospizzabar;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import mariospizzabar.Util.DBConnector;
 
 // @author Sohaib, Jimmy, Daniel & Emil.
 public class Bestilling {
@@ -47,6 +52,24 @@ public class Bestilling {
 
     public void setAfhentningsTidspunkt(LocalTime afhentningsTidspunkt) {
         this.afhentningsTidspunkt = afhentningsTidspunkt;
+    }
+    
+    public static void getBestillingFromDB() throws ClassNotFoundException, SQLException{
+        String query = "SELECT Pizzaname, Price, PickupTime FROM mariopizza.Orders";
+        Connection myConnector = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+        myConnector = DBConnector.getConnector();
+
+        pstmt = myConnector.prepareStatement(query);
+        resultSet = pstmt.executeQuery();
+        while(resultSet.next()){
+        String ProductName = resultSet.getString("PizzaName");
+            int Price = resultSet.getInt("Price");
+            String PickupTime = resultSet.getString("PickupTime");
+
+            System.out.println(ProductName + Price + PickupTime);
+    }
     }
 
     @Override

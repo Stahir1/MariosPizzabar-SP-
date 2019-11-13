@@ -49,7 +49,7 @@ public class MariosPizzaBarMain {
                     break;
                 case 3:
                     //Liste.readFile("Data/Mariosliste.csv");
-                    Liste.readOrdersFromDB();
+                    Bestilling.getBestillingFromDB();
                     System.out.println("Vil du fjerne en bestilling og markere den som ekspederet? (1 = JA, 2 = NEJ)");
                     number = IntScanner();
                     if (number == 1) {
