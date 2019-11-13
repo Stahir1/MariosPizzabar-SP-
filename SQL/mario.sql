@@ -109,7 +109,8 @@ CREATE TABLE IF NOT EXISTS `order_details` (
 DROP TABLE IF EXISTS `orderhistory`;
 CREATE TABLE IF NOT EXISTS `orderhistory` (
   `OrderID` int(11) NOT NULL DEFAULT '0',
+  `Ordering` int(11) NOT NULL DEFAULT '0',
   `Pizzaname` varchar(255) DEFAULT NULL,
   `Price` int(11) DEFAULT NULL,
-  PRIMARY KEY (`OrderID`)
+  PRIMARY KEY (`OrderID`,`Ordering`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

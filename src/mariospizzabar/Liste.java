@@ -70,17 +70,22 @@ public class Liste {
     
     
     public static void removePizzaFromDB(int orderId) throws ClassNotFoundException, SQLException {
+        String query2 = "INSERT INTO orderhistory (OrderID, Ordering, Pizzaname, Price) SELECT OrderID, Ordering, Pizzaname, Price FROM activeorders WHERE OrderId = ?";
         String query = "DELETE FROM mariopizza.activeorders WHERE OrderId = ?";
         //ArrayList<Pizza> retValPizzaer = null;
         Connection myConnector = null;
         PreparedStatement pstmt = null;
+        PreparedStatement pstmt2 = null;
         ResultSet resultSet = null;
         myConnector = DBConnector.getConnector();
 
+        pstmt2 = myConnector.prepareStatement(query2);
         pstmt = myConnector.prepareStatement(query);
 
+        pstmt2.setInt(1, orderId);
         pstmt.setInt(1, orderId);
             
+        pstmt2.executeUpdate();
         pstmt.executeUpdate();
      
         pstmt.close();
