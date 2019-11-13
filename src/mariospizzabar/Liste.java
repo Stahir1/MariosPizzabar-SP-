@@ -69,7 +69,7 @@ public class Liste {
     }
     
     
-    public static void removePizzaFromDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, int orderId) throws ClassNotFoundException, SQLException {
+    public static void removePizzaFromDB(int orderId) throws ClassNotFoundException, SQLException {
         String query = "DELETE FROM mariopizza.orders WHERE OrderId = ?";
         //ArrayList<Pizza> retValPizzaer = null;
         Connection myConnector = null;

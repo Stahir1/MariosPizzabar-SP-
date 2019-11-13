@@ -166,9 +166,8 @@ public class MariosPizzaBarMain {
     }
     
     
-    public static void FjernProces(int number) {
-        
-        
+    public static void FjernProces(int number) throws ClassNotFoundException, SQLException {
+        Liste.removePizzaFromDB(number);
     }
             
             
