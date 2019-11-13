@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `activeorders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table mariopizza.orders: ~3 rows (approximately)
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `activeorders` DISABLE KEYS */;
 INSERT INTO `activeorders` (`OrderID`, `Ordering`, `Pizzaname`, `Price`, `PickupTime`) VALUES
 	(1, 1, 'Vesuvio', 57, '16:30'),
 	(1, 2, 'Dennis', 65, '16:30'),
@@ -84,7 +84,7 @@ INSERT INTO `activeorders` (`OrderID`, `Ordering`, `Pizzaname`, `Price`, `Pickup
 	(2, 1, 'Hawaii', 61, '11:30'),
 	(2, 2, 'Danala', 61, '11:30'),
 	(3, 1, 'Mexicano', 65, '18:20');
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+/*!40000 ALTER TABLE `activeorders` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
