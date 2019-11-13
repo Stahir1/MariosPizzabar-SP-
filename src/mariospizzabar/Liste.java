@@ -88,6 +88,30 @@ public class Liste {
     }
     
     
+    public static void insertPizzaToHistoryDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, int orderId) throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO mariopizza.orderhistory (OrderId, Pizzaname, Price) SELECT OrderId, Pizzaname, Price FROM mariopizza.activeorders";
+        //ArrayList<Pizza> retValPizzaer = null;
+        Connection myConnector = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+        myConnector = DBConnector.getConnector();
+
+        pstmt = myConnector.prepareStatement(query);
+
+        for (int i = 0; i < pizzaer.size(); i++) {
+            pstmt.setInt(1, orderId);
+            pstmt.setString(2, pizzaer.get(i).getNavn());
+            pstmt.setInt(3, pizzaer.get(i).getPrice());
+            
+            
+            pstmt.executeUpdate();
+        }
+     
+        pstmt.close();
+        myConnector.close();
+    }
+    
+    
 
     public ArrayList listeMaker(Bestilling bestilling) {
         ArrayList<Bestilling> marioListe = new ArrayList();
