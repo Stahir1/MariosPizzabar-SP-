@@ -68,7 +68,7 @@ public class Bestilling {
             int Price = resultSet.getInt("Price");
             String PickupTime = resultSet.getString("PickupTime");
 
-            System.out.println(ProductName + Price + PickupTime);
+            System.out.println("Pizzanavn: " + ProductName + ", Pris: " + Price + ", Afhentningstidspunkt: " + PickupTime);
     }
     }
 
