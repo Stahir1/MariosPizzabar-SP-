@@ -67,39 +67,6 @@ public class Liste {
         pstmt.close();
         myConnector.close();
     }
-    
-     public static void RemovePizzaFromDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, int orderId) throws ClassNotFoundException, SQLException {
-        String query = "DELETE FROM mariopizza.orders WHERE OrderId = ?";
-        
-        //ArrayList<Pizza> retValPizzaer = null;
-        Connection myConnector = null;
-        PreparedStatement pstmt = null;
-        ResultSet resultSet = null;
-        myConnector = DBConnector.getConnector();
-
-        pstmt = myConnector.prepareStatement(query);
-        
-        while(resultSet.next()) {
-            int orderid = resultSet.getInt("orderId");
-
-            retValMovie = new Movie(movie_id, movie_title, movie_director, "2001");
-            
-        }
-      //  int countID = 1;
-       // pstmt.setInt(1, countID++);
-       for (int i = 0; i < pizzaer.size(); i++) {
-            pstmt.setInt(1, orderId);
-            pstmt.setInt(2, i+1); // for at lave ordering kolennen i order table starte på 1 i stedet for 0.
-            pstmt.setString(3, pizzaer.get(i).getNavn());
-            pstmt.setInt(4, pizzaer.get(i).getPrice());
-            pstmt.setString(5, bestilling.getAfhentningsTidspunkt().toString());
-            
-            pstmt.executeUpdate();
-       }
-     
-        pstmt.close();
-        myConnector.close();
-    }
 
     public ArrayList listeMaker(Bestilling bestilling) {
         ArrayList<Bestilling> marioListe = new ArrayList();
