@@ -67,20 +67,6 @@ public class Liste {
         pstmt.close();
         myConnector.close();
     }
-    
-     public static void readOrdersFromDB() throws ClassNotFoundException, SQLException {
-        String query = "SELECT * FROM mariopizza.orders";
-        Connection myConnector = null;
-        PreparedStatement pstmt = null;
-        ResultSet resultSet = null;
-        myConnector = DBConnector.getConnector();
-
-        pstmt = myConnector.prepareStatement(query);
-        pstmt.executeUpdate();
-     
-        pstmt.close();
-        myConnector.close();
-    }
 
     public ArrayList listeMaker(Bestilling bestilling) {
         ArrayList<Bestilling> marioListe = new ArrayList();
