@@ -116,6 +116,24 @@ public class Liste {
         myConnector.close();
     }
     
+    public static void pizzaStatistics() throws ClassNotFoundException, SQLException{
+         String query = "SELECT Pizzaname, SUM(Price) FROM mariopizza.orderhistory GROUP BY Pizzaname ORDER BY SUM(Price) DESC LIMIT 1";
+        Connection myConnector = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+        myConnector = DBConnector.getConnector();
+
+        pstmt = myConnector.prepareStatement(query);
+        resultSet = pstmt.executeQuery();
+        while(resultSet.next()){
+            String ProductName = resultSet.getString(1);
+            int Price = resultSet.getInt(2);
+            System.out.println("Mest solgte pizza: " + ProductName + ", Omsætning: " + Price + "\n");
+            
+            
+        }
+    }
+    
     
 
     public ArrayList listeMaker(Bestilling bestilling) {

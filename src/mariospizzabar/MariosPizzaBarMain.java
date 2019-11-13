@@ -56,6 +56,7 @@ public class MariosPizzaBarMain {
                         System.out.println("Hvilken bestilling vil du fjerne? (\"n\")");
                         number = IntScanner();
                         FjernProces(number);
+                        System.out.println("Bestilling fjernet.");
                         //String textIn = StringScanner();
                         //Liste.editFile2("Data/Mariosliste.csv", textIn, 1, ";");
                     } else if (number == 2) {
@@ -65,11 +66,12 @@ public class MariosPizzaBarMain {
                     break;
                 case 4:
                     //Liste.readFile("Data/MariosEkspederet.csv"); // Mulighed for at læse MariosEkspederet.csv i programmet, hvis ønskes.
-                    Liste.fileToEksp("Data/MariosEkspederet.csv");
-                    System.out.println("\nVil du se listen over ekspederet ordre? (1 = JA, 2 = NEJ)");
+                    //Liste.fileToEksp("Data/MariosEkspederet.csv");
+                    System.out.println("\nØnsker du at se statistikken? (1 = JA, 2 = NEJ)");
                     number = IntScanner();
                     if (number == 1) {
-                        Liste.readFile("Data/MariosEkspederet.csv");
+                        Liste.pizzaStatistics();
+                        //Liste.readFile("Data/MariosEkspederet.csv");
                     } else if (number == 2) {
 
                     }

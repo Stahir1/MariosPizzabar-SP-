@@ -65,11 +65,13 @@ public class Bestilling {
         resultSet = pstmt.executeQuery();
         while(resultSet.next()){
             int OrderID = resultSet.getInt("OrderID");
-            String ProductName = resultSet.getString("PizzaName");
+            String ProductName = resultSet.getString("Pizzaname");
             int Price = resultSet.getInt("Price");
             String PickupTime = resultSet.getString("PickupTime");
 
             System.out.println("Ordre ID: " + OrderID + ", Pizzanavn: " + ProductName + ", Pris: " + Price + ", Afhentningstidspunkt: " + PickupTime);
+            
+            
         }
     }
 
