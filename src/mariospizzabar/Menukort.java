@@ -84,7 +84,7 @@ public class Menukort {
         marioMenu.add(new Pizza(20, "Voldamort", "tomatsauce, ost, kylling, creme fraiche , hvidløg og chili", 66));
         marioMenu.add(new Pizza(21, "Løkke", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 69));
         marioMenu.add(new Pizza(22, "DC", "tomatsauce, ost, kylling, bearnaise, Kødsauce og oregano", 65));
-        marioMenu.add(new Pizza(23, "Marvel", "tomatsauce, ost, kylling, bearnaise, hvidløg og creme fraiche ", 70));
+        marioMenu.add(new Pizza(23, "Marvel", "tomatsauce, ost, kylling, bearnaise, hvidløg og creme fraiche", 70));
         marioMenu.add(new Pizza(24, "Chicago", "tomatsauce, ost, kylling, bearnaise, hvidløg og Kødsauce", 70));
         marioMenu.add(new Pizza(25, "Bae", "tomatsauce, ost, kylling, bearnaise, creme fraiche  og oregano", 70));
         marioMenu.add(new Pizza(26, "Margrethe", "tomatsauce, ost, kylling, bacon, hvidløg og oregano", 70));
@@ -92,8 +92,8 @@ public class Menukort {
         marioMenu.add(new Pizza(28, "Daniela", "tomatsauce, ost, kylling, bacon, løg, creme fraiche og oregano", 65));
         marioMenu.add(new Pizza(29, "SoHype", "tomatsauce, ost, kylling, ananas, hvidløg, oksekød og oregano", 70));
         marioMenu.add(new Pizza(30, "GitEmil", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 68));
-        marioMenu.add(new Pizza(30, "Jimmay", "tomatsauce, ost, kylling, bearnaise, creme fraiche og oregano", 75));
-        marioMenu.add(new Pizza(31, "Tullebob", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 80));
+        marioMenu.add(new Pizza(31, "Jimmay", "tomatsauce, ost, kylling, bearnaise, creme fraiche og oregano", 75));
+        marioMenu.add(new Pizza(32, "Tullebob", "tomatsauce, ost, kylling, bearnaise, hvidløg og oregano", 80));
 
         return marioMenu;
     }*/

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import mariospizzabar.Menukort;
 import mariospizzabar.Util.DBConnector;
+import mariospizzabar.View.MainMenuView;
 
 public class MariosPizzaBarMain {
 
@@ -21,16 +22,12 @@ public class MariosPizzaBarMain {
         int choice = 0;
 
         System.out.println("Velkommen til Marios Pizzabar.");
+        
         // runProg loopet håndtere afslutningen af programmet. 
         // Vi har en runProg boolean som er true som bliver ved med at køre programmet
         // indtil at runProg bliver false, hvorefter programmet lukkes. 
-        
         while(runProg) {
-            System.out.println("Tast 1 for at se menukortet.");
-            System.out.println("Tast 2 for at oprette en bestilling.");
-            System.out.println("Tast 3 for at se bestillingslisten.");
-            System.out.println("Tast 4 for at se omsætningen.");
-            System.out.println("Tast 5 for at lukke programmet.");
+            MainMenuView.showMainMenu();
             int number = IntScanner();
             String tidspunkt = "";
 
