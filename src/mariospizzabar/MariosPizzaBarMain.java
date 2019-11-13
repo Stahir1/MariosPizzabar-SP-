@@ -15,7 +15,7 @@ import mariospizzabar.View.MainMenuView;
 
 public class MariosPizzaBarMain {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
+    public static void main(String[] args) throws ClassNotFoundException, IOException, SQLException {
         Controller.runProg();
 }
     

@@ -96,6 +96,9 @@ public class Liste {
 
             pstmt.close();
             myConnector.close();
+            
+            System.out.println("Bestilling fjernet.");
+            
         } catch (SQLException ex) {
             System.out.println("Kan ikke kommunikere korrekt med databasen.");
         }

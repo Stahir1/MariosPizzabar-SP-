@@ -1,4 +1,3 @@
-
 package mariospizzabar.Controllers;
 
 import java.io.IOException;
@@ -8,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mariospizzabar.Bestilling;
 import mariospizzabar.Liste;
 import mariospizzabar.Menukort;
@@ -16,8 +17,9 @@ import mariospizzabar.Util.DBConnector;
 import mariospizzabar.View.MainMenuView;
 
 public class Controller {
-    public static void runProg() throws ClassNotFoundException, SQLException, IOException{
-        
+
+    public static void runProg() {
+
         Menukort marioMenukort = new Menukort();
         boolean runProg = true;
         boolean bestGo = true;
@@ -44,9 +46,18 @@ public class Controller {
                 case 1:
                     Menukort.getPizzaFromDB();
                     break;
-                case 2:
-                    BestilProces(tidspunkt, marioMenukort);
-                    break;
+                case 2: {
+                    try {
+                        BestilProces(tidspunkt, marioMenukort);
+                    } catch (ClassNotFoundException ex) {
+                        System.out.println("Kunne ikke finde stien.");;
+                    } catch (SQLException ex) {
+                        System.out.println("Kunne ikke kommunikere med databasen.");;
+                    } catch (IOException ex) {
+                        System.out.println("Noget gik galt.");;
+                    }
+                }
+                break;
                 case 3:
                     //Liste.readFile("Data/Mariosliste.csv");
                     Bestilling.getBestillingFromDB();
@@ -55,10 +66,15 @@ public class Controller {
                     if (number == 1) {
                         System.out.println("Hvilken bestilling vil du fjerne? (\"n\")");
                         number = IntScanner();
-                        FjernProces(number);
-                        System.out.println("Bestilling fjernet.");
-                        //String textIn = StringScanner();
-                        //Liste.editFile2("Data/Mariosliste.csv", textIn, 1, ";");
+                        try {
+                            FjernProces(number);
+                            //String textIn = StringScanner();
+                            //Liste.editFile2("Data/Mariosliste.csv", textIn, 1, ";");
+                        } catch (ClassNotFoundException ex) {
+                            System.out.println("Kunne ikke finde stien.");;
+                        } catch (SQLException ex) {
+                            System.out.println("Kunne ikke kommunikere med databasen.");;
+                        }
                     } else if (number == 2) {
                     } else {
                         System.out.println("Du har hverken tastet \"1\" eller \"2\"");
