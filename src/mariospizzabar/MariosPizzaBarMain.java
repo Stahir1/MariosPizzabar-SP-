@@ -53,9 +53,11 @@ public class MariosPizzaBarMain {
                     System.out.println("Vil du fjerne en bestilling og markere den som ekspederet? (1 = JA, 2 = NEJ)");
                     number = IntScanner();
                     if (number == 1) {
-                        System.out.println("Hvilken bestilling vil du fjerne? (\"-n\")");
-                        String textIn = StringScanner();
-                        Liste.editFile2("Data/Mariosliste.csv", textIn, 1, ";");
+                        System.out.println("Hvilken bestilling vil du fjerne? (\"n\")");
+                        number = IntScanner();
+                        FjernProces(number);
+                        //String textIn = StringScanner();
+                        //Liste.editFile2("Data/Mariosliste.csv", textIn, 1, ";");
                     } else if (number == 2) {
                     } else {
                         System.out.println("Du har hverken tastet \"1\" eller \"2\"");
@@ -160,6 +162,12 @@ public class MariosPizzaBarMain {
         //    marioListe.removeBestilling(bestilling);
         System.out.println("Klik på \"1\" for at afslutte bestilling.");
         System.out.println("Klik på et andet tal for at fortsætte.");
+        
+    }
+    
+    
+    public static void FjernProces(int number) {
+        
         
     }
             

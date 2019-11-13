@@ -67,6 +67,27 @@ public class Liste {
         pstmt.close();
         myConnector.close();
     }
+    
+    
+    public static void removePizzaFromDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, int orderId) throws ClassNotFoundException, SQLException {
+        String query = "DELETE FROM mariopizza.orders WHERE OrderId = ?";
+        //ArrayList<Pizza> retValPizzaer = null;
+        Connection myConnector = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+        myConnector = DBConnector.getConnector();
+
+        pstmt = myConnector.prepareStatement(query);
+
+        pstmt.setInt(1, orderId);
+            
+        pstmt.executeUpdate();
+     
+        pstmt.close();
+        myConnector.close();
+    }
+    
+    
 
     public ArrayList listeMaker(Bestilling bestilling) {
         ArrayList<Bestilling> marioListe = new ArrayList();

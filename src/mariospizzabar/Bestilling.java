@@ -55,7 +55,7 @@ public class Bestilling {
     }
     
     public static void getBestillingFromDB() throws ClassNotFoundException, SQLException{
-        String query = "SELECT Pizzaname, Price, PickupTime FROM mariopizza.Orders";
+        String query = "SELECT OrderID, Pizzaname, Price, PickupTime FROM mariopizza.Orders";
         Connection myConnector = null;
         PreparedStatement pstmt = null;
         ResultSet resultSet = null;
@@ -64,12 +64,13 @@ public class Bestilling {
         pstmt = myConnector.prepareStatement(query);
         resultSet = pstmt.executeQuery();
         while(resultSet.next()){
-        String ProductName = resultSet.getString("PizzaName");
+            int OrderID = resultSet.getInt("OrderID");
+            String ProductName = resultSet.getString("PizzaName");
             int Price = resultSet.getInt("Price");
             String PickupTime = resultSet.getString("PickupTime");
 
-            System.out.println("Pizzanavn: " + ProductName + ", Pris: " + Price + ", Afhentningstidspunkt: " + PickupTime);
-    }
+            System.out.println("Ordre ID: " + OrderID + ", Pizzanavn: " + ProductName + ", Pris: " + Price + ", Afhentningstidspunkt: " + PickupTime);
+        }
     }
 
     @Override
