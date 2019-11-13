@@ -19,33 +19,20 @@ public class Pizza {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public String getNavn() {
         return navn;
-    }
-
-    public void setNavn(String navn) {
-        this.navn = navn;
     }
 
     public String getTopping() {
         return topping;
     }
 
-    public void setTopping(String topping) {
-        this.topping = topping;
-    }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     @Override
     public String toString() {

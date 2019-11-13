@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mariospizzabar.Util.DBConnector;
 
 // @author Sohaib, Jimmy, Daniel & Emil.
@@ -53,25 +55,28 @@ public class Bestilling {
     public void setAfhentningsTidspunkt(LocalTime afhentningsTidspunkt) {
         this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
-    
-    public static void getBestillingFromDB() throws ClassNotFoundException, SQLException{
-        String query = "SELECT OrderID, Pizzaname, Price, PickupTime FROM mariopizza.activeorders";
-        Connection myConnector = null;
-        PreparedStatement pstmt = null;
-        ResultSet resultSet = null;
-        myConnector = DBConnector.getConnector();
 
-        pstmt = myConnector.prepareStatement(query);
-        resultSet = pstmt.executeQuery();
-        while(resultSet.next()){
-            int OrderID = resultSet.getInt("OrderID");
-            String ProductName = resultSet.getString("Pizzaname");
-            int Price = resultSet.getInt("Price");
-            String PickupTime = resultSet.getString("PickupTime");
+    public static void getBestillingFromDB() {
+        try {
+            String query = "SELECT OrderID, Pizzaname, Price, PickupTime FROM mariopizza.activeorders";
+            Connection myConnector = null;
+            PreparedStatement pstmt = null;
+            ResultSet resultSet = null;
+            myConnector = DBConnector.getConnector();
 
-            System.out.println("Ordre ID: " + OrderID + ", Pizzanavn: " + ProductName + ", Pris: " + Price + ", Afhentningstidspunkt: " + PickupTime);
-            
-            
+            pstmt = myConnector.prepareStatement(query);
+            resultSet = pstmt.executeQuery();
+            while (resultSet.next()) {
+                int OrderID = resultSet.getInt("OrderID");
+                String ProductName = resultSet.getString("Pizzaname");
+                int Price = resultSet.getInt("Price");
+                String PickupTime = resultSet.getString("PickupTime");
+
+                System.out.println("Ordre ID: " + OrderID + ", Pizzanavn: " + ProductName + ", Pris: " + Price + ", Afhentningstidspunkt: " + PickupTime);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("Kan ikke kommunikere korrekt med databasen.");
         }
     }
 
