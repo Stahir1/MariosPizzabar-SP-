@@ -55,7 +55,7 @@ public class Bestilling {
     }
     
     public static void getBestillingFromDB() throws ClassNotFoundException, SQLException{
-        String query = "SELECT OrderID, Pizzaname, Price, PickupTime FROM mariopizza.Orders";
+        String query = "SELECT OrderID, Pizzaname, Price, PickupTime FROM mariopizza.activeorders";
         Connection myConnector = null;
         PreparedStatement pstmt = null;
         ResultSet resultSet = null;

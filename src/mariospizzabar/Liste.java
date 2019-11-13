@@ -44,7 +44,7 @@ public class Liste {
     }
     
     public static void addPizzaToDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, int orderId) throws ClassNotFoundException, SQLException {
-        String query = "INSERT INTO mariopizza.orders (OrderId, Ordering, Pizzaname, Price, PickupTime) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO mariopizza.activeorders (OrderId, Ordering, Pizzaname, Price, PickupTime) VALUES (?, ?, ?, ?, ?)";
         //ArrayList<Pizza> retValPizzaer = null;
         Connection myConnector = null;
         PreparedStatement pstmt = null;
@@ -70,7 +70,7 @@ public class Liste {
     
     
     public static void removePizzaFromDB(int orderId) throws ClassNotFoundException, SQLException {
-        String query = "DELETE FROM mariopizza.orders WHERE OrderId = ?";
+        String query = "DELETE FROM mariopizza.activeorders WHERE OrderId = ?";
         //ArrayList<Pizza> retValPizzaer = null;
         Connection myConnector = null;
         PreparedStatement pstmt = null;

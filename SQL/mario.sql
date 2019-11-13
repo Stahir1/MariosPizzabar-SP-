@@ -63,9 +63,9 @@ INSERT INTO `products` (`ProductID`, `ProductName`, `Topping`, `Price`) VALUES
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping structure for tabel mariopizza.orders
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE IF NOT EXISTS `orders` (
+-- Dumping structure for tabel mariopizza.activeorders
+DROP TABLE IF EXISTS `activeorders`;
+CREATE TABLE IF NOT EXISTS `activeorders` (
   `OrderID` int(11) NOT NULL DEFAULT '0',
   `Ordering` int(11) NOT NULL DEFAULT '0',
   `Pizzaname` varchar(255) DEFAULT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
 
 -- Dumping data for table mariopizza.orders: ~3 rows (approximately)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` (`OrderID`, `Ordering`, `Pizzaname`, `Price`, `PickupTime`) VALUES
+INSERT INTO `activeorders` (`OrderID`, `Ordering`, `Pizzaname`, `Price`, `PickupTime`) VALUES
 	(1, 1, 'Vesuvio', 57, '16:30'),
 	(1, 2, 'Dennis', 65, '16:30'),
 	(1, 3, 'Silvia', 61, '16:30'),
@@ -104,3 +104,12 @@ CREATE TABLE IF NOT EXISTS `order_details` (
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+
+DROP TABLE IF EXISTS `orderhistory`;
+CREATE TABLE IF NOT EXISTS `orderhistory` (
+  `OrderID` int(11) NOT NULL DEFAULT '0',
+  `Pizzaname` varchar(255) DEFAULT NULL,
+  `Price` int(11) DEFAULT NULL,
+  PRIMARY KEY (`OrderID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

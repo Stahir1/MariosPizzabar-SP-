@@ -117,7 +117,7 @@ public class MariosPizzaBarMain {
         
         int orderId = 0;
         
-        String query = "SELECT MAX(orderid) FROM orders;"; 
+        String query = "SELECT MAX(orderid) FROM activeorders;"; 
 
         Connection myConnector = DBConnector.getConnector();
         Statement stmt = myConnector.createStatement();
