@@ -19,7 +19,6 @@ public class Pizza {
         return ID;
     }
 
-
     public String getNavn() {
         return navn;
     }
@@ -28,11 +27,9 @@ public class Pizza {
         return topping;
     }
 
-
     public int getPrice() {
         return price;
     }
-
 
     @Override
     public String toString() {

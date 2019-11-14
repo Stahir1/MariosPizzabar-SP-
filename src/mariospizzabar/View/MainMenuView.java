@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mariospizzabar.View;
 
 /**
  *
- * @author Danie
+ * @author Daniel, Emil, Sohaib, Jimmy
  */
 public class MainMenuView {
+
+    // Her ses main menuens standard layout i programmet.
+    // Denne skærm vendes der hele tiden tilbage til, og er udgangspunktet for programmet.
     public static void showMainMenu() {
         System.out.println("**************************************");
         System.out.println("Tast 1 for at se menukortet.");
@@ -20,5 +19,5 @@ public class MainMenuView {
         System.out.println("**************************************");
         System.out.println("Tast herunder...");
     }
-    
+
 }

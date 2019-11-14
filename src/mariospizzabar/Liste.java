@@ -28,18 +28,18 @@ public class Liste {
         bestillingsListe.remove(bestilling);
     }
 
+    // Her tilføjes bestillinger/pizzaer til databasen.
+    // Metoden kræver en ArrayList med pizzaer, en bestilling samt et autogenereret ordre id.
     public static void addPizzaToDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, int orderId) {
         try {
             String query = "INSERT INTO mariopizza.activeorders (OrderId, Ordering, Pizzaname, Price, PickupTime) VALUES (?, ?, ?, ?, ?)";
-            //ArrayList<Pizza> retValPizzaer = null;
             Connection myConnector = null;
             PreparedStatement pstmt = null;
             ResultSet resultSet = null;
             myConnector = DBConnector.getConnector();
 
             pstmt = myConnector.prepareStatement(query);
-            //  int countID = 1;
-            // pstmt.setInt(1, countID++);
+            
             for (int i = 0; i < pizzaer.size(); i++) {
                 pstmt.setInt(1, orderId);
                 pstmt.setInt(2, i + 1); // for at lave ordering kolennen i order table starte på 1 i stedet for 0.
@@ -57,10 +57,13 @@ public class Liste {
         }
     }
 
-    public static void removePizzaFromDB(int orderId) throws SQLException {
+    // Her kan man intaste ordre id'et på den bestilling man ønsker at fjerne.
+    // Når man fjerner en bestilling, ryger den af Marios liste over,
+    // hvilke pizzaer han skal lave til ovre i statistik-listen (orderhistory).
+    public static void removePizzaFromDB(int orderId) {
+        try {
             String query2 = "INSERT INTO orderhistory (OrderID, Pizzaname, Price) SELECT OrderId, Pizzaname, Price FROM activeorders WHERE OrderId = ?";
             String query = "DELETE FROM mariopizza.activeorders WHERE OrderId = ?";
-            //ArrayList<Pizza> retValPizzaer = null;
             Connection myConnector = null;
             PreparedStatement pstmt = null;
             PreparedStatement pstmt2 = null;
@@ -78,36 +81,15 @@ public class Liste {
 
             pstmt.close();
             myConnector.close();
-            
+
             System.out.println("Bestilling fjernet.");
-            
-       
+        } catch (SQLException ex) {
+            System.out.println("Kunne ikke kommunikere med databasen.");;
+        }
+
     }
 
-    public static void insertPizzaToHistoryDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, int orderId) throws SQLException {
-       
-            String query = "INSERT INTO mariopizza.orderhistory (OrderId, Pizzaname, Price) SELECT OrderId, Pizzaname, Price FROM mariopizza.activeorders";
-            //ArrayList<Pizza> retValPizzaer = null;
-            Connection myConnector = null;
-            PreparedStatement pstmt = null;
-            ResultSet resultSet = null;
-            myConnector = DBConnector.getConnector();
-
-            pstmt = myConnector.prepareStatement(query);
-
-            for (int i = 0; i < pizzaer.size(); i++) {
-                pstmt.setInt(1, orderId);
-                pstmt.setString(2, pizzaer.get(i).getNavn());
-                pstmt.setInt(3, pizzaer.get(i).getPrice());
-
-                pstmt.executeUpdate();
-            }
-
-            pstmt.close();
-            myConnector.close();
-         
-    }
-
+    // Her ses den mest solgte pizza samt den samlede omsætning.
     public static void pizzaStatistics() {
         try {
             String query = "SELECT Pizzaname, SUM(Price) FROM mariopizza.orderhistory GROUP BY Pizzaname ORDER BY SUM(Price) DESC LIMIT 1";

@@ -2,15 +2,22 @@ package mariospizzabar.Util;
 
 import java.sql.*;
 
+
+/* 
+ * @author Emil, Sohaib, Jimmy, Daniel.
+ */
+
 public class DBConnector {
 
+    // Bruges til at gøre kommunikation med databasen mulig.
+    // OBS: Husk at logge ind med eget login.
     public static Connection getConnector() {
         Connection connector = null;
         String url = "jdbc:mysql://localhost:3306/mariopizza?";
         url += "serverTimezone=UTC&allowPublicKeyRetrieval=true&";
         url += "useSSL=false";
         String user = "root";
-        String password = "ascent";
+        String password = "Cph23168";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {

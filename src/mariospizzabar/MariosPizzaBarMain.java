@@ -2,15 +2,21 @@ package mariospizzabar;
 
 // @author Sohaib, Jimmy, Daniel & Emil.
 
-import java.sql.SQLException;
-import mariospizzabar.Controllers.Controller;
 
+
+/**
+ * ************************************************************************
+ * TIL LÆRERNE: Husk at importere connector og protobuf i "MariosPizzaBar"
+ * projektet samt jeres login til MySQL-databasen.
+ **************************************************************************
+ */
+
+import mariospizzabar.Controllers.Controller;
 
 public class MariosPizzaBarMain {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+    public static void main(String[] args) {
         Controller.runProg();
-}
-    
-}
+    }
 
+}

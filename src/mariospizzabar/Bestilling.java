@@ -8,18 +8,6 @@ import mariospizzabar.Util.DBConnector;
 // @author Sohaib, Jimmy, Daniel & Emil.
 public class Bestilling {
 
-    /**
-     * ************************************************************************
-     * Vores bestillingsklasse kan kun have én pizza pr. bestilling. Dette
-     * skyldes, at vi ikke har lavet en addPizzaToOrder-metode. Men da hver
-     * pizza bliver printet og tilføjet til Mariosliste.csv vil pizzaerne blive
-     * gemt der.
-     *
-     * Minusset her er, at man ikke kan bestille f.eks. 3 pizzaer på en gang og
-     * få den skrevet ind under samme bestillings ID. Men det var heller ikke et
-     * krav i kravspecifikationen.
-     * ************************************************************************
-     */
     private int ordreID;
     private LocalTime afhentningsTidspunkt;
     private ArrayList<Pizza> pizzaer;
@@ -51,6 +39,8 @@ public class Bestilling {
         this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
 
+    // Denne metode bruger Mario i menuen, når han taster 1.
+    // Den viser menukortet i programmet - det hentes fra databasen.
     public static void getBestillingFromDB() {
         try {
             String query = "SELECT OrderID, Pizzaname, Price, PickupTime FROM mariopizza.activeorders";
