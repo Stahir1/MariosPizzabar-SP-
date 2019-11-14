@@ -3,6 +3,7 @@ package mariospizzabar.Controllers;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import mariospizzabar.Bestilling;
 import mariospizzabar.Liste;
@@ -27,82 +28,90 @@ public class Controller {
         // Vi har en runProg boolean som er true som bliver ved med at køre programmet
         // indtil at runProg bliver false, hvorefter programmet lukkes. 
         while (runProg) {
-            MainMenuView.showMainMenu();
-            int number = IntScanner();
-            String tidspunkt = "";
+            try {
+                MainMenuView.showMainMenu();
+                int number = IntScanner();
+                String tidspunkt = "";
 
-            /**
-             * *****************************************************************
-             * I menuen er der mulighed for at indtaste forskellige numre som
-             * input og hvert nummer har en handling kodet.
-             * *****************************************************************
-             */
-            switch (number) {
-                case 1:
-                    Menukort.getPizzaFromDB();
-                    break;
-                case 2: {
-                    try {
-                        BestilProces(tidspunkt, marioMenukort);
-                    } catch (ClassNotFoundException ex) {
-                        System.out.println("Kunne ikke finde stien.");;
-                    } catch (SQLException ex) {
-                        System.out.println("Kunne ikke kommunikere med databasen.");;
-                    } catch (IOException ex) {
-                        System.out.println("Noget gik galt.");;
-                    }
-                }
-                break;
-                case 3:
-                    //Liste.readFile("Data/Mariosliste.csv");
-                    Bestilling.getBestillingFromDB();
-                    System.out.println("Vil du fjerne en bestilling og markere den som ekspederet? (1 = JA, 2 = NEJ)");
-                    number = IntScanner();
-                    if (number == 1) {
-                        System.out.println("Hvilken bestilling vil du fjerne? (\"n\")");
-                        number = IntScanner();
+                /**
+                 * *****************************************************************
+                 * I menuen er der mulighed for at indtaste forskellige numre
+                 * som input og hvert nummer har en handling kodet.
+                 * *****************************************************************
+                 */
+                switch (number) {
+                    case 1:
+                        Menukort.getPizzaFromDB();
+                        break;
+                    case 2: {
                         try {
-                            FjernProces(number);
-                            //String textIn = StringScanner();
-                            //Liste.editFile2("Data/Mariosliste.csv", textIn, 1, ";");
+                            BestilProces(tidspunkt, marioMenukort);
                         } catch (ClassNotFoundException ex) {
                             System.out.println("Kunne ikke finde stien.");;
                         } catch (SQLException ex) {
                             System.out.println("Kunne ikke kommunikere med databasen.");;
+                        } catch (IOException ex) {
+                            System.out.println("Noget gik galt.");;
                         }
-                    } else if (number == 2) {
-                    } else {
-                        System.out.println("Du har hverken tastet \"1\" eller \"2\"");
                     }
                     break;
-                case 4:
-                    //Liste.readFile("Data/MariosEkspederet.csv"); // Mulighed for at læse MariosEkspederet.csv i programmet, hvis ønskes.
-                    //Liste.fileToEksp("Data/MariosEkspederet.csv");
-                    System.out.println("\nØnsker du at se statistikken? (1 = JA, 2 = NEJ)");
-                    number = IntScanner();
-                    if (number == 1) {
-                        Liste.pizzaStatistics();
-                        //Liste.readFile("Data/MariosEkspederet.csv");
-                    } else if (number == 2) {
-
+                    case 3:
+                        //Liste.readFile("Data/Mariosliste.csv");
+                        Bestilling.getBestillingFromDB();
+                        System.out.println("Vil du fjerne en bestilling og markere den som ekspederet? (1 = JA, 2 = NEJ)");
+                        number = IntScanner();
+                        if (number == 1) {
+                            System.out.println("Hvilken bestilling vil du fjerne? (\"n\")");
+                            number = IntScanner();
+                            try {
+                                FjernProces(number);
+                                //String textIn = StringScanner();
+                                //Liste.editFile2("Data/Mariosliste.csv", textIn, 1, ";");
+                            } catch (ClassNotFoundException ex) {
+                                System.out.println("Kunne ikke finde stien.");;
+                            } catch (SQLException ex) {
+                                System.out.println("Kunne ikke kommunikere med databasen.");;
+                            }
+                        } else if (number == 2) {
+                        } else {
+                            System.out.println("Du har hverken tastet \"1\" eller \"2\"");
+                        }
+                        break;
+                    case 4:
+                        //Liste.readFile("Data/MariosEkspederet.csv"); // Mulighed for at læse MariosEkspederet.csv i programmet, hvis ønskes.
+                        //Liste.fileToEksp("Data/MariosEkspederet.csv");
+                        System.out.println("\nØnsker du at se statistikken? (1 = JA, 2 = NEJ)");
+                        number = IntScanner();
+                        if (number == 1) {
+                            Liste.pizzaStatistics();
+                            //Liste.readFile("Data/MariosEkspederet.csv");
+                        } else if (number == 2) {
+                        } else {
+                            System.out.println("Du har hverken tastet \"1\" eller \"2\"");
+                        }
+                        break;
+                    case 5: {
+                        runProg = false;
                     }
-                    break;
-                case 5: {
-                    runProg = false;
-                }
 
-                /* System.out.println("Vil du lukke programmet? (1 = JA, 2 = NEJ)");
+                    /* System.out.println("Vil du lukke programmet? (1 = JA, 2 = NEJ)");
                 number = IntScanner();
                 if (number == 1) {
                     runProg = false;
                 } else if (number == 2) {
                     runProg = true;
                 }*/
-                System.out.println("Programmet lukkes...");
-                break;
+                    System.out.println("Programmet lukkes...");
+                    break;
 
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("Du har ikke tastet et tal.");
             }
+
         }
+
     }
     // Vi har to forskellige scannere. Én til Int som eksempelvis bruges til at nagivere rundt i menuen.
     // Og én til String som bl.a. bruges til afhentningstidspunkt. 
@@ -161,20 +170,29 @@ public class Controller {
             System.out.println("Tast \"-1\" når du er færdig med bestillingen.");
             System.out.println("Indtast Pizzanummer: ");
         }
+        while(bestGo) {
         System.out.println("Indtast afhentingstidspunkt (Eks. \"10:30\"): ");
         tidspunkt = StringScanner();
-        System.out.println("\nBestilling gennemført:");
-        Bestilling bestilling = new Bestilling(number, tidspunkt, marioBestilling);
-        Liste marioListe = new Liste(bestilling);
-
-        bestilling.getPizzaer();
-        System.out.println(bestilling.toString() + "\n");
-        marioListe.listeMaker(bestilling);
-        //      Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
-        Liste.addPizzaToDB(marioBestilling, bestilling, orderId);
-        //    marioListe.removeBestilling(bestilling);
-        System.out.println("Klik på \"1\" for at afslutte bestilling.");
-        System.out.println("Klik på et andet tal for at fortsætte.");
+        if(tidspunkt.contains(":")) {
+            System.out.println("\nBestilling gennemført:");
+            Bestilling bestilling = new Bestilling(number, tidspunkt, marioBestilling);
+            Liste marioListe = new Liste(bestilling);
+        
+        
+            bestilling.getPizzaer();
+            System.out.println(bestilling.toString() + "\n");
+            marioListe.listeMaker(bestilling);
+            //      Liste.writeFile(marioListe, "Data/Mariosliste.csv", count++);
+            Liste.addPizzaToDB(marioBestilling, bestilling, orderId);
+            //    marioListe.removeBestilling(bestilling);
+            System.out.println("Klik på \"1\" for at afslutte bestilling.");
+            System.out.println("Klik på et andet tal for at fortsætte.");
+            bestGo = false;
+        }
+        else {
+            System.out.println("Du har ikke indtastet tidspunktet korrekt");
+        }
+        }
 
     }
 
