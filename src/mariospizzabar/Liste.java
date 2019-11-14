@@ -58,8 +58,7 @@ public class Liste {
     }
 
     public static void removePizzaFromDB(int orderId) throws SQLException {
-        
-            String query2 = "INSERT INTO orderhistory (Pizzaname, Price) SELECT Pizzaname, Price FROM activeorders WHERE OrderId = ?";
+            String query2 = "INSERT INTO orderhistory (OrderID, Pizzaname, Price) SELECT OrderId, Pizzaname, Price FROM activeorders WHERE OrderId = ?";
             String query = "DELETE FROM mariopizza.activeorders WHERE OrderId = ?";
             //ArrayList<Pizza> retValPizzaer = null;
             Connection myConnector = null;
@@ -71,7 +70,7 @@ public class Liste {
             pstmt2 = myConnector.prepareStatement(query2);
             pstmt = myConnector.prepareStatement(query);
 
-            //pstmt2.setInt(1, orderId);
+            pstmt2.setInt(1, orderId);
             pstmt.setInt(1, orderId);
 
             pstmt2.executeUpdate();
