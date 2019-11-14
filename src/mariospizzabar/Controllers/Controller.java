@@ -14,7 +14,7 @@ import mariospizzabar.View.MainMenuView;
 
 public class Controller {
 
-    public static void runProg() {
+    public static void runProg() throws ClassNotFoundException, SQLException {
 
         Menukort marioMenukort = new Menukort();
         boolean runProg = true;
@@ -63,15 +63,11 @@ public class Controller {
                         if (number == 1) {
                             System.out.println("Hvilken bestilling vil du fjerne? (\"n\")");
                             number = IntScanner();
-                            try {
+                            
                                 FjernProces(number);
                                 //String textIn = StringScanner();
                                 //Liste.editFile2("Data/Mariosliste.csv", textIn, 1, ";");
-                            } catch (ClassNotFoundException ex) {
-                                System.out.println("Kunne ikke finde stien.");;
-                            } catch (SQLException ex) {
-                                System.out.println("Kunne ikke kommunikere med databasen.");;
-                            }
+                            
                         } else if (number == 2) {
                         } else {
                             System.out.println("Du har hverken tastet \"1\" eller \"2\"");

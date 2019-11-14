@@ -57,9 +57,9 @@ public class Liste {
         }
     }
 
-    public static void removePizzaFromDB(int orderId) {
-        try {
-            String query2 = "INSERT INTO orderhistory (OrderID, Ordering, Pizzaname, Price) SELECT OrderID, Ordering, Pizzaname, Price FROM activeorders WHERE OrderId = ?";
+    public static void removePizzaFromDB(int orderId) throws SQLException {
+        
+            String query2 = "INSERT INTO orderhistory (Pizzaname, Price) SELECT Pizzaname, Price FROM activeorders WHERE OrderId = ?";
             String query = "DELETE FROM mariopizza.activeorders WHERE OrderId = ?";
             //ArrayList<Pizza> retValPizzaer = null;
             Connection myConnector = null;
@@ -71,7 +71,7 @@ public class Liste {
             pstmt2 = myConnector.prepareStatement(query2);
             pstmt = myConnector.prepareStatement(query);
 
-            pstmt2.setInt(1, orderId);
+            //pstmt2.setInt(1, orderId);
             pstmt.setInt(1, orderId);
 
             pstmt2.executeUpdate();
@@ -82,13 +82,11 @@ public class Liste {
             
             System.out.println("Bestilling fjernet.");
             
-        } catch (SQLException ex) {
-            System.out.println("Kan ikke kommunikere korrekt med databasen.");
-        }
+       
     }
 
-    public static void insertPizzaToHistoryDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, int orderId) {
-        try {
+    public static void insertPizzaToHistoryDB(ArrayList<Pizza> pizzaer, Bestilling bestilling, int orderId) throws SQLException {
+       
             String query = "INSERT INTO mariopizza.orderhistory (OrderId, Pizzaname, Price) SELECT OrderId, Pizzaname, Price FROM mariopizza.activeorders";
             //ArrayList<Pizza> retValPizzaer = null;
             Connection myConnector = null;
@@ -108,9 +106,7 @@ public class Liste {
 
             pstmt.close();
             myConnector.close();
-        } catch (SQLException ex) {
-            System.out.println("Kan ikke kommunikere korrekt med databasen.");
-        }
+         
     }
 
     public static void pizzaStatistics() {
